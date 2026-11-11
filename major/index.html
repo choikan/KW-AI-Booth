@@ -102,6 +102,34 @@ body.personal .booth-only{display:none!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+/* ===== 노트북 화면 ===== */
+@media (min-width:900px){
+  .wrap{max-width:1180px;padding:28px 32px 48px}
+  #s-start.on{display:grid;grid-template-columns:1fr 1.05fr;column-gap:48px;align-items:center;min-height:calc(100vh - 140px)}
+  #s-start>*{grid-column:1}
+  #s-start .depts{grid-column:2;grid-row:1 / span 6;margin:0}
+  #s-start h1{font-size:3.4rem}
+  #s-start .hero img{max-width:230px}
+  #s-q{max-width:900px;margin:0 auto;padding-top:24px}
+  #s-q h2{font-size:2.2rem;text-align:center;margin:18px 0 26px}
+  #s-q .qnum{text-align:center;font-size:1.3rem}
+  #s-q .opts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  #s-q .opts button{flex-direction:column;justify-content:center;text-align:center;min-height:200px;font-size:1.4rem;padding:24px;box-shadow:0 5px 0 var(--line)}
+  #s-q .opts button:hover{background:var(--blue-soft)}
+  #s-q .opts button .k{width:44px;height:44px;font-size:1.3rem;background:var(--grad);color:#fff;border-color:var(--line)}
+  #s-result.on{display:grid;grid-template-columns:400px 1fr;column-gap:28px;align-items:start}
+  .rleft{position:sticky;top:76px;display:flex;flex-direction:column}
+  .rleft>.stack{order:1;margin-top:4px}
+  .rleft>.box.booth-only{order:2}
+  .rleft>.box{margin:12px 0}
+  .rright .box:first-child{margin-top:0}
+  .rright{columns:2;column-gap:16px}
+  .rright .box{margin:0 0 16px;break-inside:avoid;display:inline-block;width:100%}
+  .rchar{width:190px}
+  .rtitle{font-size:2rem}
+  #s-result>.note{grid-column:1 / -1}
+}
 </style>
 </head>
 <body>
@@ -131,6 +159,7 @@ body.personal .booth-only{display:none!important}
 </section>
 
 <section class="screen" id="s-result">
+  <div class="rleft">
   <p class="center muted jua" style="margin:0">나의 AI 전공 유형</p>
   <img class="rchar" id="rChar" alt="">
   <div class="code" id="rCode"></div>
@@ -138,6 +167,22 @@ body.personal .booth-only{display:none!important}
   <h2 class="rtitle" id="rTitle"></h2>
   <p class="rline" id="rLine"></p>
   <div class="box"><p id="rDesc" style="margin:0"></p></div>
+  <div class="box booth-only noprint">
+    <h3>내 결과 가져가기</h3>
+    <div class="qr">
+      <div class="img" id="qrBox"></div>
+      <p style="margin:0">휴대폰 카메라로 QR을 찍으면 내 결과 페이지가 열려요. 거기서 <b>PDF로 저장</b>을 누르면 파일로 간직할 수 있어요.</p>
+    </div>
+  </div>
+
+  <div class="stack noprint">
+    <button class="primary personal-only" id="btnPdf">PDF로 저장</button>
+    <button class="primary booth-only" id="btnNext">다음 사람</button>
+    <button class="booth-only" id="btnRetry">다시 하기</button>
+    <button class="personal-only" id="btnMine">나도 다시 해보기</button>
+  </div>
+  </div>
+  <div class="rright">
 
   <div class="box">
     <h3>나의 연구 · 개발 · 응용 가능성</h3>
@@ -166,19 +211,6 @@ body.personal .booth-only{display:none!important}
     <div class="others" id="rOthers"></div>
   </div>
 
-  <div class="box booth-only noprint">
-    <h3>내 결과 가져가기</h3>
-    <div class="qr">
-      <div class="img" id="qrBox"></div>
-      <p style="margin:0">휴대폰 카메라로 QR을 찍으면 내 결과 페이지가 열려요. 거기서 <b>PDF로 저장</b>을 누르면 파일로 간직할 수 있어요.</p>
-    </div>
-  </div>
-
-  <div class="stack noprint">
-    <button class="primary personal-only" id="btnPdf">PDF로 저장</button>
-    <button class="primary booth-only" id="btnNext">다음 사람</button>
-    <button class="booth-only" id="btnRetry">다시 하기</button>
-    <button class="personal-only" id="btnMine">나도 다시 해보기</button>
   </div>
   <p class="note center">2026 KW Epilogue: AI Booth · 과목은 2026학년도 2학기 인공지능융합대학 개설 과목을 기준으로 골랐어요.</p>
 </section>

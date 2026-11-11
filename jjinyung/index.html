@@ -96,6 +96,29 @@ tr.me td{font-weight:700;color:var(--blue)}
 .cover img{width:120px;height:120px;border-radius:16px;border:2px solid var(--line);background:#fff}
 .bubble{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:18px;padding:10px 12px;font-family:"Jua",sans-serif;font-size:1.05rem;line-height:1.35;margin:0 0 14px 6px;text-align:center;align-self:stretch}
 .bubble::after{content:"";position:absolute;left:-9px;top:22px;width:14px;height:14px;background:var(--surface);border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
+
+button.big{font-size:1.5rem;padding:16px}
+.sub2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sub2 button{font-size:1rem;padding:9px 10px;box-shadow:0 2px 0 var(--line);border-width:2px;color:var(--muted)}
+/* ===== 노트북 화면 ===== */
+@media (min-width:900px){
+  .wrap{max-width:1180px;padding:28px 32px 48px}
+  #s-home.on{display:grid;grid-template-columns:1.1fr 1fr;column-gap:56px;align-items:center;min-height:calc(100vh - 150px)}
+  #s-home .hero{margin:14px 0 0}
+  .homeR{border:2.5px solid var(--line);border-radius:24px;background:var(--surface);padding:24px 26px;box-shadow:0 5px 0 var(--line)}
+  .homeR>p{margin-bottom:16px}
+  #s-home .vs{font-size:4.4rem}
+  #s-home .vs .v{font-size:1.8rem}
+  #s-home .bubble{font-size:1.25rem}
+  #s-home>p{font-size:1.15rem}
+  #s-play.on,#s-recplay.on{display:grid;grid-template-columns:minmax(0,600px) 1fr;column-gap:36px;align-items:start}
+  #s-play .stage,#s-recplay .stage{grid-column:1;grid-row:1 / span 2;width:100%}
+  #s-play .hud,#s-recplay .hud{grid-column:2;position:static;padding-top:0}
+  #s-play .answer{grid-column:2;margin-top:18px}
+  .hudrow{font-size:1.35rem}
+  .timer{font-size:2.6rem}
+  #s-fail.on,#s-clear.on,#s-recform.on,#s-recres.on,#s-rank.on{max-width:640px;margin:20px auto 0}
+}
 </style>
 </head>
 <body>
@@ -107,16 +130,19 @@ tr.me td{font-weight:700;color:var(--blue)}
 <div class="wrap">
 
 <section class="screen" id="s-home">
+  <div class="homeL">
   <span class="tag">2026 KW Epilogue: AI Booth</span>
   <div class="hero"><img class="heroImg" alt="공식 마스코트 찐융"><div class="herotext"><div class="bubble">나는 코융이야!<br>시작 전에 내 모습을 잘 기억해둬~</div><h1 class="vs"><span>찐융</span><span class="v">VS</span><span>짭융</span></h1></div></div>
+  </div>
+  <div class="homeR">
   <p>조금씩 다른 <b>짭융</b> 사이에서 진짜 <b>찐융</b>을 찾아보세요.</p>
   <label>난이도</label>
   <div class="lvsel" id="lvSel" role="group" aria-label="난이도 선택"></div>
   <p class="lvdesc" id="lvDesc"></p>
   <div class="stack" style="margin-top:8px">
-    <button class="primary" id="btnCount">START</button>
-    <button id="btnRecord">CHALLENGE</button>
-    <button id="btnRank">RANKING</button>
+    <button class="primary big" id="btnCount">게임 시작</button>
+    <div class="sub2"><button id="btnRecord">기록 도전</button><button id="btnRank">순위 보기</button></div>
+  </div>
   </div>
 </section>
 

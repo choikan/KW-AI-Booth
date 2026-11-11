@@ -36,19 +36,15 @@
 
   --grad:linear-gradient(135deg,#3F5FD1 0%,#7457D6 100%);
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0B1636; --surface:#15245A; --ink:#EEF1FA; --line:#C9D3F5; --muted:#A9B4DB; --soft:#22357A;
-    --blue-soft:#24387F; --violet-soft:#2E2A72; --ok-soft:#14453F; --bad-soft:#4A1F3A;
-  }
-}
+/* 부스 노트북 화면이 다크 모드여도 항상 밝은 테마로 보여요 */
+:root{color-scheme:light}
 
 /* ---------- 상단 바 ---------- */
 .kw-bar{position:sticky;top:0;z-index:30;background:var(--night);color:#fff;
   background-image:radial-gradient(1px 1px at 12% 30%,#fff9 50%,transparent 51%),radial-gradient(1px 1px at 38% 70%,#fff7 50%,transparent 51%),
   radial-gradient(1.5px 1.5px at 64% 20%,#fffa 50%,transparent 51%),radial-gradient(1px 1px at 86% 60%,#fff8 50%,transparent 51%),linear-gradient(90deg,#081430,#16285E);
   padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;}
-.kw-bar-in{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.kw-bar-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:10px}
 .kw-bar a{color:#fff;text-decoration:none}
 .kw-home{display:flex;align-items:center;gap:8px;font-family:"Jua",sans-serif;font-size:1.02rem;line-height:1.1}
 .kw-home img{width:34px;height:34px;object-fit:contain}

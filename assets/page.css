@@ -43,3 +43,12 @@ th{font-family:"Jua",sans-serif;font-weight:400;color:var(--muted)}
 .grade span{font-size:.85rem;color:var(--muted)}
 .grade .g0 b{color:var(--muted)} .grade .g1 b{color:var(--ok)} .grade .g2 b{color:var(--blue)} .grade .g3 b{color:var(--violet)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* ===== 노트북 화면 ===== */
+@media (min-width:900px){
+  .wrap{max-width:1180px;padding:28px 32px 48px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;column-gap:40px;align-items:start}
+  .cols>.col-sticky{position:sticky;top:80px}
+  h1{font-size:3rem}
+  .hero img{width:170px}
+}

@@ -16,13 +16,13 @@
 .steps li:last-child{border-bottom:0}
 .steps li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-family:"Jua",sans-serif;display:flex;align-items:center;justify-content:center}
 .steps b{font-family:"Jua",sans-serif;font-weight:400}
-.board{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:min(100%,240px);margin:6px auto 0}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:min(100%,170px);margin:6px auto 0}
 .board i{aspect-ratio:1;border:2px solid var(--line);border-radius:10px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;font-style:normal;font-family:"Jua",sans-serif;color:var(--blue)}
 .board i:nth-child(odd){background:var(--violet-soft);color:var(--violet)}
 /* 운영진 타이머 */
 .timer{text-align:center}
 .phase{font-family:"Jua",sans-serif;font-size:1.2rem;color:var(--muted)}
-.clock{font-family:"Jua",sans-serif;font-size:5.4rem;line-height:1;margin:6px 0}
+.clock{font-family:"Jua",sans-serif;font-size:7rem;line-height:1;margin:6px 0}
 .clock.watch{color:var(--blue)} .clock.place{color:var(--violet)} .clock.low{color:var(--bad)}
 .bar{height:14px;border-radius:999px;background:var(--soft);border:2px solid var(--line);overflow:hidden;margin:6px 0 14px}
 .bar i{display:block;height:100%;width:100%;background:var(--grad)}
@@ -39,7 +39,8 @@
   <a class="kw-all" href="../">전체 체험</a>
 </div></header>
 
-<div class="wrap">
+<div class="wrap cols">
+  <div>
   <span class="tag">ZONE A · 현장 카드 게임</span>
   <div class="hero">
     <img src="../assets/img/koyung-ce.webp" alt="고민하는 코융이">
@@ -69,7 +70,9 @@
     <p class="muted" style="margin:10px 0 0;font-size:.9rem">경품은 등급에 따라 출구에서 1인 1회 받아요. 컴퓨터의 RAM과 사람의 기억은 원리가 달라요. 재미로 빗댄 거예요!</p>
   </div>
 
-  <div class="box timer" id="staff">
+  </div>
+  <div class="col-sticky">
+  <div class="box timer" id="staff" style="margin-top:0">
     <h3>운영진 타이머</h3>
     <p class="phase" id="phase">준비되면 시작을 눌러 주세요</p>
     <div class="clock" id="clock">5</div>
@@ -83,6 +86,7 @@
       <div class="verdict" id="verdict"></div>
       <button class="full" id="btnNext" style="margin-top:6px">다음 참가자</button>
     </div>
+  </div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -116,8 +120,8 @@ $("#score").addEventListener("click",e=>{ const b=e.target.closest("button"); if
 });
 $("#btnGo").onclick=async()=>{
   $("#btnGo").disabled=true;
-  await countdown(WATCH,"watch","👀 관찰 중… 위치를 기억해요");
-  await countdown(PLACE,"place","✋ 배치 중… 원래 자리에 붙여요");
+  await countdown(WATCH,"watch","관찰 중… 위치를 기억해요");
+  await countdown(PLACE,"place","배치 중… 원래 자리에 붙여요");
   $("#phase").textContent="끝! 채점해 주세요"; $("#btnGo").hidden=true; $("#scoreBox").hidden=false;
   $("#scoreBox").scrollIntoView({behavior:"smooth",block:"nearest"});
 };

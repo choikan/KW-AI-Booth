@@ -12,171 +12,165 @@
 <link rel="stylesheet" href="assets/common.css">
 <style>
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.6;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.55;-webkit-tap-highlight-color:transparent}
 h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo",sans-serif;font-weight:400}
-a{color:inherit}
 
-/* ---------- 밤하늘 히어로 ---------- */
-.sky{position:relative;overflow:hidden;color:#fff;padding:calc(28px + env(safe-area-inset-top,0px)) 20px 92px;text-align:center;
-  background:radial-gradient(900px 420px at 80% -10%,rgba(116,87,214,.55),transparent 60%),radial-gradient(700px 380px at 0% 20%,rgba(63,95,209,.45),transparent 60%),linear-gradient(180deg,#050C22 0%,#0B1A44 60%,#1A2C6B 100%)}
+/* ---------- 밤하늘 헤더 ---------- */
+.sky{position:relative;overflow:hidden;color:#fff;padding:28px 32px 64px;
+  background:radial-gradient(900px 420px at 85% -20%,rgba(116,87,214,.55),transparent 60%),radial-gradient(700px 380px at 0% 30%,rgba(63,95,209,.45),transparent 60%),linear-gradient(180deg,#050C22 0%,#0B1A44 65%,#1A2C6B 100%)}
 .stars{position:absolute;inset:0;pointer-events:none}
-.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.8;animation:tw 3s ease-in-out infinite}
+.stars i{position:absolute;border-radius:50%;background:#fff;opacity:.8;animation:tw 3s ease-in-out infinite}
 @keyframes tw{50%{opacity:.25}}
-.shoot{position:absolute;top:18%;left:-20%;width:140px;height:2px;background:linear-gradient(90deg,transparent,#fff);transform:rotate(-18deg);opacity:.0;animation:sh 7s 2s linear infinite}
-@keyframes sh{0%{left:-20%;top:12%;opacity:0}4%{opacity:.9}12%{left:110%;top:40%;opacity:0}100%{opacity:0}}
-.sky-in{position:relative;max-width:640px;margin:0 auto}
-.logo{width:150px;height:auto;display:block;margin:0 auto 14px;filter:drop-shadow(0 0 18px rgba(141,178,255,.45))}
-.pill{display:inline-block;font-family:"Jua",sans-serif;font-size:1rem;padding:5px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
-.sky h1{font-size:clamp(2.2rem,8vw,3.4rem);line-height:1.12;margin:14px 0 8px}
+.sky-in{position:relative;max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:32px}
+.logo{width:150px;height:auto;flex:none;filter:drop-shadow(0 0 18px rgba(141,178,255,.45))}
+.title{flex:1;min-width:0}
+.pill{display:inline-block;font-family:"Jua",sans-serif;font-size:1rem;padding:4px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
+.sky h1{font-size:3.2rem;line-height:1.1;margin:12px 0 6px}
 .sky h1 em{font-style:normal;background:linear-gradient(90deg,#9DBBFF,#C9B5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sky p{margin:0;opacity:.85}
-.info{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
-.info div{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:16px;padding:8px 16px;text-align:left}
-.info small{display:block;font-size:.75rem;opacity:.7;letter-spacing:.08em}
-.info b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.25rem}
-.wave{position:absolute;left:0;right:0;bottom:-1px;height:70px;display:block}
+.sky p{margin:0;opacity:.85;font-size:1.1rem}
+.info{display:flex;flex-direction:column;gap:10px;flex:none}
+.info div{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:16px;padding:8px 18px;min-width:230px}
+.info small{display:block;font-size:.75rem;opacity:.7;letter-spacing:.1em}
+.info b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.35rem}
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:56px;display:block}
 
 /* ---------- 본문 ---------- */
-.wrap{max-width:720px;margin:-58px auto 0;padding:0 16px 48px;position:relative}
-.hello{display:flex;align-items:flex-end;gap:10px;margin-bottom:18px}
-.hello img{width:120px;height:auto;flex:none;filter:drop-shadow(0 6px 0 rgba(24,34,74,.15))}
-.say{position:relative;flex:1;background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:12px 16px;font-family:"Jua",sans-serif;font-size:1.12rem;line-height:1.4;box-shadow:0 3px 0 var(--line);margin-bottom:26px}
-.say::after{content:"";position:absolute;left:-9px;bottom:18px;width:14px;height:14px;background:var(--surface);border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
+.wrap{max-width:1240px;margin:-30px auto 0;padding:0 32px 40px;position:relative}
+.hello{display:flex;align-items:center;gap:6px;margin:0 0 20px}
+.hello img{width:118px;height:auto;flex:none;filter:drop-shadow(0 6px 0 rgba(24,34,74,.12))}
+.say{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:12px 20px;font-family:"Jua",sans-serif;font-size:1.2rem;line-height:1.45}
+.say::after{content:"";position:absolute;left:-9px;top:50%;margin-top:-7px;width:14px;height:14px;background:var(--surface);border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
 .say b{color:var(--blue);font-weight:400}
-.sec{font-family:"Jua",sans-serif;font-size:1.35rem;margin:28px 2px 10px;display:flex;align-items:center;gap:8px}
-.sec::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--grad);transform:rotate(45deg)}
+.say span{color:var(--violet)}
 
-.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:"Jua",sans-serif;font-size:.95rem;color:var(--muted);margin:0 2px 14px}
-.flow span{background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--ink)}
-.flow i{font-style:normal}
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.zone{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:2.5px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 5px 0 var(--line);transition:transform .12s,box-shadow .12s}
+.zone:hover{transform:translateY(-4px);box-shadow:0 9px 0 var(--line)}
+.zone:active{transform:translateY(5px);box-shadow:0 0 0 var(--line)}
+.zone:focus-visible{outline:4px solid var(--violet);outline-offset:4px}
+.zone .pic{position:relative;height:190px;display:flex;align-items:center;justify-content:center;border-bottom:2.5px solid var(--line)}
+.zone .pic img{height:170px;width:auto;max-width:90%;object-fit:contain}
+.zone .letter{position:absolute;left:14px;top:12px;font-family:"Jua",sans-serif;font-size:1.05rem;color:#fff;border-radius:999px;padding:3px 12px}
+.zone .body{flex:1;display:flex;flex-direction:column;padding:16px 18px 18px}
+.zone h3{font-size:1.45rem;line-height:1.25;margin:0 0 6px}
+.zone p{margin:0;color:var(--muted);font-size:1rem}
+.zone .meta{margin-top:6px;font-size:.92rem;color:var(--muted)}
+.zone .btn{margin-top:auto;padding-top:14px}
+.zone .btn span{display:block;text-align:center;font-family:"Jua",sans-serif;font-size:1.2rem;color:#fff;border:2.5px solid var(--line);border-radius:999px;padding:9px;box-shadow:0 3px 0 var(--line)}
+.za .pic{background:#E8EEFF}.za .letter,.za .btn span{background:#4A6BE0}
+.zb .pic{background:#E4E9FF}.zb .letter,.zb .btn span{background:var(--blue)}
+.zc .pic{background:#EDE7FF}.zc .letter,.zc .btn span{background:var(--violet)}
+.zd .pic{background:#F2E6FB}.zd .letter,.zd .btn span{background:#9447C9}
+.za .btn span{background:var(--surface);color:var(--ink)}
 
-.zones{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media (max-width:560px){.zones{grid-template-columns:1fr}}
-.zone{position:relative;display:flex;gap:12px;align-items:center;text-decoration:none;background:var(--surface);border:2.5px solid var(--line);border-radius:22px;padding:14px 14px 14px 16px;box-shadow:0 4px 0 var(--line);transition:transform .08s,box-shadow .08s;min-height:132px}
-.zone:active{transform:translateY(4px);box-shadow:0 0 0 var(--line)}
-.zone:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
-.zone .txt{flex:1;min-width:0}
-.zone .letter{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;color:#fff;font-family:"Jua",sans-serif;font-size:1.1rem;margin-right:6px;vertical-align:-3px}
-.zone h3{display:inline;font-size:1.25rem;margin:0}
-.zone p{margin:6px 0 8px;font-size:.95rem;color:var(--muted);line-height:1.45}
-.zone .meta{display:flex;gap:6px;flex-wrap:wrap}
-.zone .meta span{font-size:.8rem;border-radius:999px;padding:1px 9px;background:var(--soft);color:var(--ink)}
-.zone img{width:92px;height:92px;object-fit:contain;flex:none}
-.zone .meta span.go{background:var(--grad);color:#fff;font-family:"Jua",sans-serif}
-.zone.offline .meta span.go{background:var(--soft);color:var(--ink)}
-.za .letter{background:#5C79E6}.zb .letter{background:var(--blue)}.zc .letter{background:var(--violet)}.zd .letter{background:#9A4FD0}
+.exit{display:flex;align-items:center;gap:24px;margin-top:26px;text-decoration:none;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px 28px;box-shadow:0 5px 0 var(--line);
+  background:radial-gradient(500px 180px at 90% 0%,rgba(255,212,92,.3),transparent 60%),linear-gradient(120deg,#16285E,#4B3AA8)}
+.exit:hover{filter:brightness(1.06)}
+.exit:active{transform:translateY(5px);box-shadow:none}
+.exit .tagx{font-family:"Jua",sans-serif;font-size:.95rem;opacity:.8}
+.exit h3{margin:0;font-size:1.8rem;line-height:1.2}
+.exit p{margin:2px 0 0;opacity:.88;font-size:1.05rem}
+.exit .cta{margin-left:auto;flex:none;background:#fff;color:var(--night);font-family:"Jua",sans-serif;font-size:1.25rem;border-radius:999px;padding:10px 26px;border:2.5px solid var(--line);box-shadow:0 3px 0 var(--line)}
+footer{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:.9rem;margin-top:28px}
+footer img{width:34px}
 
-.exit{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 4px 0 var(--line);
-  background:radial-gradient(400px 160px at 90% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(135deg,#1B2C6E,#4B3AA8)}
-.exit:active{transform:translateY(4px);box-shadow:none}
-.exit .box{flex:none;width:76px;height:76px;border-radius:20px;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center}
-.exit h3{margin:0;font-size:1.4rem}
-.exit p{margin:4px 0 0;opacity:.85;font-size:.95rem;line-height:1.45}
-.exit .cta{display:inline-block;margin-top:10px;background:#fff;color:var(--night);font-family:"Jua",sans-serif;border-radius:999px;padding:5px 14px}
-
-.rules{background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:6px 18px;margin-top:12px}
-.rules li{padding:8px 0;border-bottom:1px dashed var(--soft)}
-.rules li:last-child{border-bottom:0}
-.rules ul{list-style:none;margin:0;padding:0}
-.rules b{font-family:"Jua",sans-serif;font-weight:400;color:var(--violet)}
-footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:34px}
-footer img{width:46px;display:block;margin:0 auto 6px;opacity:.9}
-@media (prefers-reduced-motion: reduce){.stars i,.shoot{animation:none}}
+/* 작은 화면 */
+@media (max-width:1100px){ .zones{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:760px){
+  .sky{padding:22px 18px 56px}.sky-in{flex-direction:column;text-align:center;gap:14px}.logo{width:120px}.sky h1{font-size:2.4rem}
+  .info{flex-direction:row;flex-wrap:wrap;justify-content:center}.info div{min-width:0;text-align:left}
+  .wrap{padding:0 16px 32px}.say{font-size:1.05rem}.hello img{width:96px}
+  .exit{flex-wrap:wrap;padding:18px}.exit .cta{margin-left:0}
+}
+@media (max-width:520px){ .zones{grid-template-columns:1fr} .zone .pic{height:160px}.zone .pic img{height:140px} }
+@media (prefers-reduced-motion: reduce){.stars i{animation:none}.zone{transition:none}}
 </style>
 </head>
 <body>
 
 <header class="sky">
   <div class="stars" id="stars" aria-hidden="true"></div>
-  <i class="shoot" aria-hidden="true"></i>
   <div class="sky-in">
     <img class="logo" src="assets/img/logo-white.png" alt="인공지능융합대학 제3대 학생회 하성 로고">
-    <span class="pill">2026 KW Epilogue: AI Booth</span>
-    <h1>AI 전공,<br><em>직접 해보자!</em></h1>
-    <p>인공지능융합대학 전공 탐색 · 체험 부스</p>
+    <div class="title">
+      <span class="pill">2026 KW Epilogue: AI Booth</span>
+      <h1>AI 전공, <em>직접 해보자!</em></h1>
+      <p>인공지능융합대학 전공 탐색 · 체험 부스</p>
+    </div>
     <div class="info">
-      <div><small>DATE</small><b>11.25 수 · 10:30–13:30</b></div>
+      <div><small>DATE</small><b>11.25 수 · 10:30 – 13:30</b></div>
       <div><small>PLACE</small><b>화도관 앞 통합 부스</b></div>
     </div>
   </div>
-  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 38 C 240 6, 480 64, 720 36 S 1200 10, 1440 34 V70 H0Z" fill="rgba(141,178,255,.25)"/>
-    <path d="M0 50 C 260 22, 520 74, 760 48 S 1220 26, 1440 46 V70 H0Z" fill="var(--bg)"/>
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 30 C 240 4, 480 52, 720 28 S 1200 6, 1440 26 V56 H0Z" fill="rgba(141,178,255,.25)"/>
+    <path d="M0 40 C 260 18, 520 60, 760 38 S 1220 20, 1440 36 V56 H0Z" fill="var(--bg)"/>
   </svg>
 </header>
 
 <main class="wrap">
   <div class="hello">
-    <img src="assets/img/koyung-rb.webp" alt="엄지 척 하는 코융이">
-    <div class="say">안녕! 나는 <b>코융이</b>야.<br>하고 싶은 체험을 골라서 놀다 가~</div>
+    <img src="assets/img/koyung-hi.webp" alt="손 흔드는 코융이">
+    <div class="say">안녕! 나는 <b>코융이</b>야. 하고 싶은 체험을 골라서 놀다 가~<br><span>체험 2개 이상</span> 하면 출구에서 특별상 추첨에도 응모할 수 있어!</div>
   </div>
-
-  <h2 class="sec">체험 존</h2>
-  <div class="flow" aria-label="부스 동선"><span>입구 안내</span><i>→</i><span>A · B</span><i>→</i><span>C · D</span><i>→</i><span>출구 추첨함</span></div>
 
   <div class="zones">
-    <a class="zone za offline" href="ram/">
-      <div class="txt">
-        <span class="letter">A</span><h3>RAM이 부족합니다!</h3>
-        <p>아이콘 9개를 5초 보고, 30초 안에 제자리로!</p>
-        <div class="meta"><span>현장 카드 게임</span><span>약 1분</span><span class="go">규칙 보기</span></div>
+    <a class="zone za" href="ram/">
+      <div class="pic"><span class="letter">ZONE A</span><img src="assets/img/koyung-ce.webp" alt=""></div>
+      <div class="body">
+        <h3>RAM이 부족합니다!</h3>
+        <p>아이콘 9개를 5초 보고 30초 안에 제자리로</p>
+        <div class="meta">현장 카드 게임 · 약 1분</div>
+        <div class="btn"><span>규칙 보기</span></div>
       </div>
-      <img src="assets/img/koyung-ce.webp" alt="">
     </a>
     <a class="zone zb" href="coding/">
-      <div class="txt">
-        <span class="letter">B</span><h3>Hello World 코딩</h3>
-        <p>빈칸 3개만 채우면 내 코드가 돌아가요.</p>
-        <div class="meta"><span>Python · C · Java · JS</span><span>2~3분</span><span class="go">시작 →</span></div>
+      <div class="pic"><span class="letter">ZONE B</span><img src="assets/img/koyung-sw.webp" alt=""></div>
+      <div class="body">
+        <h3>Hello World 코딩</h3>
+        <p>빈칸 3개만 채우면 내 코드가 돌아가요</p>
+        <div class="meta">Python · C · Java · JS · 2~3분</div>
+        <div class="btn"><span>시작하기</span></div>
       </div>
-      <img src="assets/img/koyung-sw.webp" alt="">
     </a>
     <a class="zone zc" href="major/">
-      <div class="txt">
-        <span class="letter">C</span><h3>나에게 맞는 AI 전공은?</h3>
-        <p>12문항으로 4개 학부 · 16가지 유형 중 내 유형 찾기</p>
-        <div class="meta"><span>QR 자율 참여</span><span>약 2분</span><span class="go">시작 →</span></div>
+      <div class="pic"><span class="letter">ZONE C</span><img src="assets/img/koyung-if.webp" alt=""></div>
+      <div class="body">
+        <h3>나에게 맞는 AI 전공은?</h3>
+        <p>12문항으로 16가지 유형 중 내 유형 찾기</p>
+        <div class="meta">4개 학부 · 약 2분</div>
+        <div class="btn"><span>시작하기</span></div>
       </div>
-      <img src="assets/img/koyung-if.webp" alt="">
     </a>
     <a class="zone zd" href="jjinyung/">
-      <div class="txt">
-        <span class="letter">D</span><h3>찐융 VS 짭융</h3>
+      <div class="pic"><span class="letter">ZONE D</span><img src="assets/img/koyung-rb.webp" alt=""></div>
+      <div class="body">
+        <h3>찐융 VS 짭융</h3>
         <p>짭융 사이에 숨은 진짜 찐융은 몇 마리?</p>
-        <div class="meta"><span>하 30초 · 중 20초 · 상 10초</span><span>약 1분</span><span class="go">시작 →</span></div>
+        <div class="meta">하 30초 · 중 20초 · 상 10초</div>
+        <div class="btn"><span>시작하기</span></div>
       </div>
-      <img src="assets/img/koyung-hi.webp" alt="">
     </a>
   </div>
 
-  <h2 class="sec">출구</h2>
   <a class="exit" href="raffle/">
-    <div class="box" aria-hidden="true"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M9 6.5 12 9l3-2.5M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg></div>
+    <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg>
     <div>
+      <div class="tagx">EXIT · 출구</div>
       <h3>경품 추첨함</h3>
-      <p>체험을 2개 이상 마쳤다면 특별상 추첨에 응모하세요.</p>
-      <span class="cta">응모하러 가기 →</span>
+      <p>체험 2개 이상 마쳤다면 특별상 추첨에 응모하세요</p>
     </div>
+    <span class="cta">응모하기</span>
   </a>
 
-  <div class="rules">
-    <ul>
-      <li><b>골라서 참여</b> · 4가지 체험 모두 할 필요 없어요. 원하는 것만 즐겨요.</li>
-      <li><b>경품</b> · 체험별 등급에 따라 출구에서 1인 1회 받아요.</li>
-      <li><b>특별상</b> · 2개 이상 체험하면 추첨함에 응모할 수 있어요.</li>
-    </ul>
-  </div>
-
-  <footer>
-    <img src="assets/img/logo-blue.png" alt="">
-    인공지능융합대학 제3대 학생회 하성 · 기획국
-  </footer>
+  <footer><img src="assets/img/logo-blue.png" alt="">인공지능융합대학 제3대 학생회 하성 · 기획국</footer>
 </main>
 
 <script>
 (function(){
   const box=document.getElementById("stars"); let h="";
-  for(let i=0;i<70;i++){ const s=(Math.random()*1.8+1).toFixed(1);
+  for(let i=0;i<90;i++){ const s=(Math.random()*1.8+1).toFixed(1);
     h+=`<i style="left:${(Math.random()*100).toFixed(2)}%;top:${(Math.random()*100).toFixed(2)}%;width:${s}px;height:${s}px;animation-delay:${(Math.random()*3).toFixed(2)}s"></i>`; }
   box.innerHTML=h;
 })();
