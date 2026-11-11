@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>경품 추첨함 · 2026 KW Epilogue: AI Booth</title>
+<link rel="icon" href="../assets/img/logo-blue.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/common.css">
+<link rel="stylesheet" href="../assets/page.css">
+<style>
+.screen{display:none}.screen.on{display:block}
+.ticket{position:relative;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px 18px 16px;box-shadow:0 4px 0 var(--line);overflow:hidden;
+  background:radial-gradient(300px 140px at 95% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(135deg,#16285E,#4B3AA8)}
+.ticket h1{margin:4px 0 6px;color:#fff}
+.ticket p{margin:0;opacity:.9}
+.ticket .prize{display:inline-block;margin-top:10px;background:#fff;color:var(--night);font-family:"Jua",sans-serif;border-radius:999px;padding:4px 14px}
+.ticket img{position:absolute;right:-6px;bottom:-10px;width:118px;height:auto}
+.ticket .txt{padding-right:104px}
+label.f{display:block;margin:0 0 6px;font-size:1.05rem}
+.zones{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.zones button{display:flex;align-items:center;gap:8px;text-align:left;font-size:1rem;padding:10px 12px;border-radius:16px}
+.zones button b{flex:none;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:9px;background:var(--soft);color:var(--ink);font-weight:400}
+.zones button[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue);box-shadow:0 3px 0 var(--blue)}
+.zones button[aria-pressed="true"] b{background:var(--grad);color:#fff}
+.need{font-size:.9rem;color:var(--muted);margin-top:8px}
+.need.ok{color:var(--ok)}
+.agree{display:flex;gap:10px;align-items:flex-start;font-family:"Gowun Dodum",sans-serif;font-size:.92rem;line-height:1.5;cursor:pointer}
+.agree input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--violet)}
+.done{text-align:center}
+.done img{width:min(56%,230px);height:auto;margin:6px auto 0;display:block}
+.no{font-family:"Jua",sans-serif;font-size:4rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin:8px 0}
+/* 운영진 */
+.staff summary{cursor:pointer;font-family:"Jua",sans-serif;font-size:1.05rem;color:var(--muted);list-style:none}
+.staff summary::-webkit-details-marker{display:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.stats div{border:2px solid var(--line);border-radius:14px;padding:8px;text-align:center}
+.stats b{display:block;font-family:"Jua",sans-serif;font-weight:400;font-size:1.7rem;line-height:1.1}
+.stats span{font-size:.82rem;color:var(--muted)}
+.drawbox{text-align:center;border:2.5px dashed var(--violet);border-radius:18px;padding:14px;background:var(--violet-soft);margin:10px 0}
+.roller{font-family:"Jua",sans-serif;font-size:2rem;min-height:3rem;line-height:1.5}
+.winners{list-style:none;margin:8px 0 0;padding:0;text-align:left}
+.winners li{display:flex;gap:10px;align-items:center;padding:6px 4px;border-bottom:1px solid var(--soft)}
+.winners li b{font-family:"Jua",sans-serif;font-weight:400;color:var(--violet);width:28px}
+.list{max-height:360px;overflow:auto;border:2px solid var(--soft);border-radius:14px;margin-top:8px}
+.list td small{color:var(--muted)}
+.list td,.list th{white-space:nowrap;font-size:.9rem;padding:7px 5px}
+tr.win td{color:var(--violet);font-weight:700}
+.x{border:0;box-shadow:none;background:none;padding:2px 6px;font-size:1rem;color:var(--muted)}
+.x:active{transform:none}
+.small{font-size:.95rem;padding:9px 14px}
+@media print{ .kw-bar,.noprint{display:none!important} }
+</style>
+</head>
+<body>
+<header class="kw-bar"><div class="kw-bar-in">
+  <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>AI Booth<small>인공지능융합대학 학생회 하성</small></span></a>
+  <span class="kw-zone"><b>★</b>경품 추첨함</span>
+  <a class="kw-all" href="../">전체 체험</a>
+</div></header>
+
+<div class="wrap">
+
+<!-- 응모 -->
+<section class="screen on" id="s-form">
+  <div class="ticket">
+    <div class="txt">
+      <span class="tag" style="background:rgba(255,255,255,.18)">EXIT · 특별상</span>
+      <h1>경품 추첨함</h1>
+      <p>체험을 <b id="minTxt">2</b>개 이상 마쳤다면<br>추첨에 응모할 수 있어요.</p>
+      <span class="prize" id="prizeTxt">특별상 · 보조배터리</span>
+    </div>
+    <img src="../assets/img/koyung-if.webp" alt="신나게 달려가는 코융이">
+  </div>
+
+  <div class="box">
+    <label class="f">참여한 체험 <span class="muted" style="font-family:'Gowun Dodum';font-size:.9rem">(운영진이 확인해요)</span></label>
+    <div class="zones" id="zones"></div>
+    <p class="need" id="need"></p>
+  </div>
+
+  <div class="box stack">
+    <div><label class="f" for="fName">이름</label><input type="text" id="fName" maxlength="10" autocomplete="off" placeholder="홍길동"></div>
+    <div><label class="f" for="fPhone">전화번호</label><input type="tel" id="fPhone" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="010-0000-0000"></div>
+    <label class="agree"><input type="checkbox" id="fAgree"><span>이름과 전화번호를 <b>특별상 당첨 안내 연락</b>에만 쓰는 데 동의해요. 이 기기에만 저장되고, 추첨과 경품 지급이 끝나면 바로 지워요.</span></label>
+  </div>
+  <button class="primary full" id="btnSubmit">추첨함에 넣기</button>
+  <p class="muted center" style="font-size:.88rem;margin-top:12px">한 사람당 한 번만 응모할 수 있어요. 당첨되면 입력한 번호로 연락드려요.</p>
+</section>
+
+<!-- 완료 -->
+<section class="screen" id="s-done">
+  <div class="box done">
+    <p class="jua muted" style="margin:0">응모 완료!</p>
+    <div class="no" id="doneNo">#001</div>
+    <p id="doneMsg"></p>
+    <img src="../assets/img/koyung-rb.webp" alt="엄지 척 하는 코융이">
+  </div>
+  <button class="primary full" id="btnNext">다음 사람</button>
+  <p class="muted center" style="font-size:.88rem;margin-top:10px" id="autoTxt"></p>
+</section>
+
+<!-- 운영진 -->
+<details class="box staff noprint" id="staff" style="margin-top:28px">
+  <summary>운영진 메뉴</summary>
+  <div id="lockBox" style="margin-top:12px">
+    <div class="row" style="flex-wrap:nowrap"><input type="password" id="aPin" inputmode="numeric" autocomplete="off" placeholder="PIN"><button class="small" id="btnUnlock" style="white-space:nowrap">열기</button></div>
+  </div>
+  <div id="adminBox" hidden style="margin-top:12px">
+    <div class="stats">
+      <div><b id="stTotal">0</b><span>응모</span></div>
+      <div><b id="stWin">0</b><span>당첨</span></div>
+      <div><b id="stToday">0</b><span>최근 1시간</span></div>
+    </div>
+
+    <div class="drawbox">
+      <h3 style="margin-bottom:6px">추첨하기</h3>
+      <div class="row" style="justify-content:center;flex-wrap:nowrap">
+        <span class="jua">당첨</span><input type="number" id="drawN" min="1" max="999" value="10" style="width:90px;text-align:center"><span class="jua">명</span>
+        <button class="primary small" id="btnDraw" style="font-size:1.1rem">추첨!</button>
+      </div>
+      <div class="roller" id="roller" aria-live="polite"></div>
+      <ol class="winners" id="winners"></ol>
+    </div>
+
+    <div class="row">
+      <button class="small" id="btnCsv">CSV 저장</button>
+      <button class="small" id="btnImport">다른 기기 CSV 합치기</button>
+      <button class="small" id="btnPrint">당첨자 인쇄</button>
+      <input type="file" id="fileCsv" accept=".csv,text/csv" hidden>
+    </div>
+
+    <div class="list"><table id="list"></table></div>
+
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <button class="small" id="btnLock">잠그기</button>
+      <button class="small danger" id="btnWipe">전체 삭제</button>
+    </div>
+  </div>
+</details>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== 설정: 필요하면 바꿔 주세요 ===== */
+const ADMIN_PIN = "2026";           // 운영진 메뉴 PIN
+const PRIZE = "보조배터리";          // 특별상 경품 이름
+const MIN_ZONES = 2;                // 응모에 필요한 최소 체험 수
+const AUTO_BACK = 8;                // 응모 완료 화면이 자동으로 돌아가는 시간(초)
+const ZONES = {A:"RAM 메모리", B:"Hello World 코딩", C:"나의 AI 전공", D:"찐융 VS 짭융"};
+
+/* ===== 이 기기에 저장 ===== */
+const KEY = "kw-raffle-v1";
+function load(){ try{ const d=JSON.parse(localStorage.getItem(KEY)); if(d&&Array.isArray(d.entries)) return d; }catch(e){} return {entries:[], winners:[], seq:0}; }
+let D = load();
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(D)); return true; }catch(e){ toast("저장하지 못했어요. 브라우저 저장 공간을 확인해 주세요"); return false; } }
+
+/* ===== 공통 ===== */
+const $=s=>document.querySelector(s);
+function esc(t){ return String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(toast._t); toast._t=setTimeout(()=>el.classList.remove("on"),1800); }
+function show(id){ document.querySelectorAll(".screen").forEach(e=>e.classList.toggle("on", e.id==="s-"+id)); window.scrollTo(0,0); }
+const fmtNo=n=>"#"+String(n).padStart(3,"0");
+function fmtPhone(p){ p=String(p||""); return p.length===11?`${p.slice(0,3)}-${p.slice(3,7)}-${p.slice(7)}`:p.length===10?`${p.slice(0,3)}-${p.slice(3,6)}-${p.slice(6)}`:p; }
+function fmtTime(t){ const d=new Date(t); return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`; }
+function rand(n){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%n; }
+
+/* ===== 응모 ===== */
+$("#minTxt").textContent=MIN_ZONES;
+$("#prizeTxt").textContent=`특별상 · ${PRIZE}`;
+let picked=new Set();
+function renderZones(){
+  $("#zones").innerHTML=Object.entries(ZONES).map(([k,v])=>`<button type="button" data-z="${k}" aria-pressed="${picked.has(k)}"><b>${k}</b>${esc(v)}</button>`).join("");
+  const n=picked.size, ok=n>=MIN_ZONES;
+  $("#need").textContent= ok ? `${n}개 체험 완료! 응모할 수 있어요.` : `${MIN_ZONES}개 이상 골라 주세요. (지금 ${n}개)`;
+  $("#need").classList.toggle("ok", ok);
+}
+$("#zones").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const z=b.dataset.z; picked.has(z)?picked.delete(z):picked.add(z); renderZones(); });
+$("#fPhone").addEventListener("input",e=>{ const d=e.target.value.replace(/\D/g,"").slice(0,11);
+  e.target.value = d.length<4 ? d : d.length<8 ? `${d.slice(0,3)}-${d.slice(3)}` : `${d.slice(0,3)}-${d.slice(3,7)}-${d.slice(7)}`; });
+
+function resetForm(){ picked=new Set(); $("#fName").value=""; $("#fPhone").value=""; $("#fAgree").checked=false; renderZones(); }
+let backTimer=0;
+$("#btnSubmit").onclick=()=>{
+  const name=$("#fName").value.trim(), phone=$("#fPhone").value.replace(/\D/g,"");
+  if(picked.size<MIN_ZONES) return toast(`체험을 ${MIN_ZONES}개 이상 골라 주세요`);
+  if(!name) return toast("이름을 입력해 주세요");
+  if(!/^01\d{8,9}$/.test(phone)) return toast("전화번호를 확인해 주세요");
+  if(!$("#fAgree").checked) return toast("동의에 체크해 주세요");
+  D=load();
+  const dup=D.entries.find(e=>e.phone===phone);
+  if(dup) return toast(`이미 응모한 번호예요 (응모번호 ${fmtNo(dup.no)})`);
+  const no=++D.seq;
+  D.entries.push({no, name, phone, zones:[...picked].sort().join(""), at:Date.now()});
+  if(!save()){ D.seq--; D.entries.pop(); return; }
+  $("#doneNo").textContent=fmtNo(no);
+  $("#doneMsg").innerHTML=`<b>${esc(name)}</b>님, 추첨함에 쏙 들어갔어요!<br><span class="muted">당첨되면 ${esc(fmtPhone(phone).replace(/-\d{4}-/,"-****-"))}로 연락드려요.</span>`;
+  show("done"); resetForm(); refreshAdmin();
+  let left=AUTO_BACK; $("#autoTxt").textContent=`${left}초 뒤 처음 화면으로 돌아가요`;
+  clearInterval(backTimer); backTimer=setInterval(()=>{ left--; $("#autoTxt").textContent=`${left}초 뒤 처음 화면으로 돌아가요`; if(left<=0){ clearInterval(backTimer); show("form"); } },1000);
+};
+$("#btnNext").onclick=()=>{ clearInterval(backTimer); show("form"); };
+
+/* ===== 운영진 ===== */
+let admin=false;
+$("#btnUnlock").onclick=()=>{ if($("#aPin").value.trim()!==ADMIN_PIN) return toast("PIN이 맞지 않아요"); admin=true; $("#aPin").value=""; refreshAdmin(); };
+$("#aPin").addEventListener("keydown",e=>{ if(e.key==="Enter") $("#btnUnlock").click(); });
+$("#btnLock").onclick=()=>{ admin=false; refreshAdmin(); $("#staff").open=false; };
+function refreshAdmin(){
+  $("#lockBox").hidden=admin; $("#adminBox").hidden=!admin;
+  if(!admin) return;
+  D=load();
+  const winSet=new Set(D.winners);
+  $("#stTotal").textContent=D.entries.length;
+  $("#stWin").textContent=D.winners.length;
+  $("#stToday").textContent=D.entries.filter(e=>Date.now()-e.at<3600e3).length;
+  $("#winners").innerHTML=D.winners.map((p,i)=>{ const e=D.entries.find(x=>x.phone===p); return e?`<li><b>${i+1}</b><span>${esc(e.name)} · ${esc(fmtPhone(e.phone))} <small class="muted">${fmtNo(e.no)}</small></span></li>`:""; }).join("");
+  $("#btnDraw").textContent = D.winners.length ? "다시 추첨" : "추첨!";
+  const rows=[...D.entries].reverse();
+  $("#list").innerHTML = rows.length
+    ? `<tr><th>번호</th><th>이름</th><th>전화번호</th><th>체험</th><th></th></tr>`+rows.map(e=>`<tr class="${winSet.has(e.phone)?"win":""}"><td>${fmtNo(e.no)}</td><td>${esc(e.name)}</td><td>${esc(fmtPhone(e.phone))}</td><td>${esc(e.zones)} <small>${fmtTime(e.at)}</small></td><td><button class="x" data-del="${e.no}" aria-label="${fmtNo(e.no)} 삭제">✕</button></td></tr>`).join("")
+    : `<tr><td class="muted">아직 응모가 없어요</td></tr>`;
+}
+$("#list").addEventListener("click",e=>{ const b=e.target.closest("[data-del]"); if(!b) return;
+  const no=+b.dataset.del;
+  if(b.dataset.arm!=="1"){ b.dataset.arm="1"; b.textContent="삭제?"; setTimeout(()=>{ if(b.isConnected){ b.dataset.arm=""; b.textContent="✕"; } },2500); return; }
+  D=load(); const e2=D.entries.find(x=>x.no===no); D.entries=D.entries.filter(x=>x.no!==no); if(e2) D.winners=D.winners.filter(p=>p!==e2.phone); save(); refreshAdmin(); toast(`${fmtNo(no)} 삭제했어요`);
+});
+
+let drawing=false, redrawArm=0;
+$("#btnDraw").onclick=async()=>{
+  if(drawing) return;
+  D=load();
+  const n=Math.max(1, Math.floor(+$("#drawN").value||0));
+  if(!D.entries.length) return toast("응모자가 없어요");
+  if(D.winners.length && Date.now()-redrawArm>3000){ redrawArm=Date.now(); return toast("한 번 더 누르면 기존 당첨을 지우고 다시 뽑아요"); }
+  redrawArm=0;
+  const pool=D.entries.map(e=>e.phone), k=Math.min(n,pool.length), win=[];
+  for(let i=0;i<k;i++){ const j=i+rand(pool.length-i); [pool[i],pool[j]]=[pool[j],pool[i]]; win.push(pool[i]); }
+  drawing=true; $("#btnDraw").disabled=true; $("#winners").innerHTML="";
+  const names=D.entries.map(e=>e.name), t0=performance.now();
+  await new Promise(res=>{ const tick=()=>{ $("#roller").textContent=names[rand(names.length)]; if(performance.now()-t0<1600) setTimeout(tick,60); else res(); }; tick(); });
+  D.winners=win; save();
+  $("#roller").textContent=`🎉 ${k}명 당첨!`;
+  drawing=false; $("#btnDraw").disabled=false; refreshAdmin();
+  if(k<n) toast(`응모자가 ${pool.length}명이라 ${k}명만 뽑았어요`);
+};
+
+/* CSV */
+function csvCell(v){ v=String(v??""); return /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v; }
+$("#btnCsv").onclick=()=>{
+  D=load(); const w=new Set(D.winners);
+  const lines=[["응모번호","이름","전화번호","참여체험","응모시각","당첨"].join(",")]
+    .concat(D.entries.map(e=>[fmtNo(e.no),e.name,fmtPhone(e.phone),e.zones,new Date(e.at).toLocaleString("ko-KR"),w.has(e.phone)?"당첨":""].map(csvCell).join(",")));
+  const blob=new Blob(["﻿"+lines.join("\n")],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=`추첨함_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },500);
+};
+function parseCSV(t){
+  const rows=[]; let row=[], cell="", q=false;
+  for(let i=0;i<t.length;i++){ const c=t[i];
+    if(q){ if(c==='"'){ if(t[i+1]==='"'){ cell+='"'; i++; } else q=false; } else cell+=c; }
+    else if(c==='"') q=true; else if(c===","){ row.push(cell); cell=""; }
+    else if(c==="\n"||c==="\r"){ if(c==="\r"&&t[i+1]==="\n") i++; row.push(cell); rows.push(row); row=[]; cell=""; }
+    else cell+=c; }
+  if(cell||row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+$("#btnImport").onclick=()=>$("#fileCsv").click();
+$("#fileCsv").onchange=async e=>{
+  const f=e.target.files[0]; e.target.value=""; if(!f) return;
+  const rows=parseCSV((await f.text()).replace(/^﻿/,""));
+  const h=rows.shift()||[]; const iN=h.indexOf("이름"), iP=h.indexOf("전화번호"), iZ=h.indexOf("참여체험");
+  if(iN<0||iP<0) return toast("이 추첨함에서 저장한 CSV만 합칠 수 있어요");
+  D=load(); const have=new Set(D.entries.map(x=>x.phone)); let added=0, skipped=0;
+  for(const r of rows){ const phone=(r[iP]||"").replace(/\D/g,""), name=(r[iN]||"").trim();
+    if(!name||!/^01\d{8,9}$/.test(phone)){ continue; }
+    if(have.has(phone)){ skipped++; continue; }
+    have.add(phone); D.entries.push({no:++D.seq, name, phone, zones:(r[iZ]||"").replace(/[^A-D]/g,""), at:Date.now()}); added++; }
+  save(); refreshAdmin(); toast(`${added}명 합쳤어요${skipped?` · 중복 ${skipped}명 제외`:""}`);
+};
+$("#btnPrint").onclick=()=>{
+  D=load(); if(!D.winners.length) return toast("아직 추첨하지 않았어요");
+  const w=window.open("","_blank"); if(!w) return toast("팝업을 허용해 주세요");
+  const items=D.winners.map((p,i)=>{ const e=D.entries.find(x=>x.phone===p); return e?`<tr><td>${i+1}</td><td>${esc(e.name)}</td><td>${esc(fmtPhone(e.phone))}</td><td>${fmtNo(e.no)}</td></tr>`:""; }).join("");
+  w.document.write(`<!doctype html><meta charset="utf-8"><title>특별상 당첨자</title><style>body{font-family:sans-serif;padding:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:8px}</style><h2>2026 KW Epilogue: AI Booth · 특별상(${esc(PRIZE)}) 당첨자</h2><table><tr><th>순번</th><th>이름</th><th>전화번호</th><th>응모번호</th></tr>${items}</table>`);
+  w.document.close(); w.focus(); w.print();
+};
+let wipeArm=0;
+$("#btnWipe").onclick=()=>{
+  if(Date.now()-wipeArm>3000){ wipeArm=Date.now(); $("#btnWipe").textContent="한 번 더 누르면 모두 지워져요"; setTimeout(()=>$("#btnWipe").textContent="전체 삭제",3000); return; }
+  D={entries:[], winners:[], seq:0}; save(); wipeArm=0; $("#btnWipe").textContent="전체 삭제"; $("#roller").textContent=""; refreshAdmin(); toast("모두 지웠어요");
+};
+
+/* 다른 탭에서 바뀌면 반영 */
+window.addEventListener("storage",e=>{ if(e.key===KEY) refreshAdmin(); });
+renderZones(); refreshAdmin();
+</script>
+</body>
+</html>

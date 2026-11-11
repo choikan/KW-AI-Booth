@@ -1,0 +1,60 @@
+/* ==========================================================
+   2026 KW Epilogue: AI Booth — 공통 테마 (하성 · 기획국)
+   색은 여기서만 바꾸면 모든 페이지에 반영돼요.
+   ========================================================== */
+:root{
+  /* 하성 로고 */
+  --night:#081430;      /* 밤하늘 남색 */
+  --night-2:#16285E;
+  --logo:#4E65AF;       /* 로고 파랑 */
+
+  /* 화면 기본 */
+  --bg:#EEF1FA;
+  --surface:#FFFFFF;
+  --ink:#18224A;        /* 글자·테두리 */
+  --line:#18224A;
+  --muted:#5B6690;
+  --soft:#E0E5F5;
+
+  /* 포인트 */
+  --blue:#3F5FD1;
+  --blue-soft:#DCE4FF;
+  --violet:#7457D6;
+  --violet-soft:#ECE6FF;
+  --sky:#8DB2FF;
+  --star:#FFD45C;
+  --ok:#22A387;
+  --ok-soft:#DDF5EE;
+  --bad:#E04F7A;
+  --bad-soft:#FCE4EC;
+
+  /* 학부 */
+  --d-sw:#3F5FD1;   /* 소프트웨어학부 */
+  --d-if:#1C9AA6;   /* 정보융합학부 */
+  --d-ce:#7457D6;   /* 컴퓨터정보공학부 */
+  --d-rb:#C9488A;   /* 로봇학부 */
+
+  --grad:linear-gradient(135deg,#3F5FD1 0%,#7457D6 100%);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1636; --surface:#15245A; --ink:#EEF1FA; --line:#C9D3F5; --muted:#A9B4DB; --soft:#22357A;
+    --blue-soft:#24387F; --violet-soft:#2E2A72; --ok-soft:#14453F; --bad-soft:#4A1F3A;
+  }
+}
+
+/* ---------- 상단 바 ---------- */
+.kw-bar{position:sticky;top:0;z-index:30;background:var(--night);color:#fff;
+  background-image:radial-gradient(1px 1px at 12% 30%,#fff9 50%,transparent 51%),radial-gradient(1px 1px at 38% 70%,#fff7 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 64% 20%,#fffa 50%,transparent 51%),radial-gradient(1px 1px at 86% 60%,#fff8 50%,transparent 51%),linear-gradient(90deg,#081430,#16285E);
+  padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;}
+.kw-bar-in{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.kw-bar a{color:#fff;text-decoration:none}
+.kw-home{display:flex;align-items:center;gap:8px;font-family:"Jua",sans-serif;font-size:1.02rem;line-height:1.1}
+.kw-home img{width:34px;height:34px;object-fit:contain}
+.kw-home small{display:block;font-family:"Gowun Dodum",sans-serif;font-size:.72rem;opacity:.75}
+.kw-zone{margin-left:auto;display:flex;align-items:center;gap:6px;font-family:"Jua",sans-serif;font-size:.95rem;
+  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 12px 4px 4px;white-space:nowrap}
+.kw-zone b{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--grad);font-weight:400}
+.kw-all{font-family:"Jua",sans-serif;font-size:.9rem;border-radius:999px;padding:6px 12px;background:#fff;color:var(--night)!important;white-space:nowrap}
+@media (max-width:420px){ .kw-home small{display:none} .kw-all{padding:6px 10px} }
