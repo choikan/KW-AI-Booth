@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css">
-<link rel="stylesheet" href="../assets/page.css">
+<link rel="stylesheet" href="../assets/common.css?v=1122">
+<link rel="stylesheet" href="../assets/page.css?v=1122">
 <style>
 .screen{display:none}.screen.on{display:block}
 .ticket{position:relative;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px 18px 16px;box-shadow:0 4px 0 var(--line);overflow:hidden;
@@ -188,7 +188,7 @@ $("#minTxt").textContent=MIN_ZONES;
 $("#prizeTxt").textContent=`추첨 경품 · ${PRIZE}`;
 let picked=new Set();
 function renderZones(){
-  $("#zones").innerHTML=Object.entries(ZONES).map(([k,v])=>`<button type="button" data-z="${k}" aria-pressed="${picked.has(k)}"><b>${"ABCD".indexOf(k)+1}</b>${esc(v)} ATTACK</button>`).join("");
+  $("#zones").innerHTML=Object.entries(ZONES).map(([k,v])=>`<button type="button" data-z="${k}" aria-pressed="${picked.has(k)}"><b>${k}</b>${esc(v)} ATTACK</button>`).join("");
   const n=picked.size, ok=n>=MIN_ZONES;
   $("#need").textContent= ok ? `ATTACK ${n}개 완료! 응모할 수 있어요.` : `${MIN_ZONES}개 이상 골라 주세요. (지금 ${n}개)`;
   $("#need").classList.toggle("ok", ok);

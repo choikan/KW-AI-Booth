@@ -9,122 +9,126 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/common.css">
+<style>
+/* 표지용 둥근 글씨체: 카페24 써라운드 (무료 폰트, 안 불러와지면 Jua로 표시) */
+@font-face{font-family:"Cafe24Ssurround";src:url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff") format("woff");font-weight:normal;font-display:swap}
+</style>
+<link rel="stylesheet" href="assets/common.css?v=1122">
 <style>
 *,*::before,*::after{box-sizing:border-box}
-html,body{min-height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.55;-webkit-tap-highlight-color:transparent}
+/* 화면 높이에 맞춰 전체 크기가 같이 줄고 늘어나요 (rem 기준) */
+html{font-size:clamp(11px,1.85vh,17px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.5;-webkit-tap-highlight-color:transparent}
 h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo",sans-serif;font-weight:400}
+.page{min-height:100vh;display:flex;flex-direction:column}
 
 /* ---------- 밤하늘 헤더 ---------- */
-.sky{position:relative;overflow:hidden;color:#fff;padding:26px 32px 66px;
+.sky{position:relative;overflow:hidden;color:#fff;flex:none;padding:1rem 2.5vw 2.9rem;
   background:radial-gradient(900px 420px at 85% -20%,rgba(116,87,214,.55),transparent 60%),radial-gradient(700px 380px at 0% 30%,rgba(63,95,209,.45),transparent 60%),linear-gradient(180deg,#050C22 0%,#0B1A44 65%,#1A2C6B 100%)}
 .stars{position:absolute;inset:0;pointer-events:none}
 .stars i{position:absolute;border-radius:50%;background:#fff;opacity:.8;animation:tw 3s ease-in-out infinite}
 @keyframes tw{50%{opacity:.25}}
-.sky-in{position:relative;max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:30px}
-.logo{width:132px;height:auto;flex:none;filter:drop-shadow(0 0 18px rgba(141,178,255,.45))}
+.sky-in{position:relative;max-width:1480px;margin:0 auto;display:flex;align-items:center;gap:1.8rem}
+.logo{height:6.6rem;width:auto;flex:none;filter:drop-shadow(0 0 18px rgba(141,178,255,.45))}
 .title{flex:1;min-width:0}
-.pill{display:inline-block;font-family:"Jua",sans-serif;font-size:.98rem;padding:4px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
-.sky h1{font-size:4rem;line-height:1;margin:12px 0 8px;letter-spacing:.01em}
+.pill{display:inline-block;font-family:"Cafe24Ssurround","Jua",sans-serif;letter-spacing:.02em;font-size:.95rem;padding:.2rem 1rem;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
+.sky h1{font-family:"Cafe24Ssurround","Jua",sans-serif;font-size:3.5rem;line-height:1.05;margin:.45rem 0 .35rem;letter-spacing:.01em}
+.sky h1 .pre{font-size:.62em;opacity:.92;vertical-align:.18em;margin-right:.1em}
 .sky h1 em{font-style:normal;background:linear-gradient(90deg,#FFD45C,#FF9DBE 45%,#C9B5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sky p{margin:0;opacity:.9;font-size:1.15rem}
-.sky p b{font-family:"Jua",sans-serif;font-weight:400;color:#FFD45C}
-.info{display:flex;flex-direction:column;gap:10px;flex:none}
-.info div{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:16px;padding:8px 18px;min-width:230px}
+.sky p{margin:0;opacity:.9;font-size:1.1rem}
+.sky p b{font-family:"Cafe24Ssurround","Jua",sans-serif;font-weight:400;color:#FFD45C}
+.info{display:flex;flex-direction:column;gap:.5rem;flex:none}
+.info div{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:1rem;padding:.35rem 1.2rem;min-width:15rem}
 .info small{display:block;font-size:.72rem;opacity:.7;letter-spacing:.12em}
 .info b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.3rem}
-.wave{position:absolute;left:0;right:0;bottom:-1px;height:56px;display:block}
+.wave{position:absolute;left:0;bottom:-1px;width:100%;height:2.6rem;display:block}
 
 /* ---------- 본문 ---------- */
-.wrap{max-width:1240px;margin:-34px auto 0;padding:0 32px 40px;position:relative}
-.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:20px;align-items:center;margin-bottom:22px}
-.hello{display:flex;align-items:center;gap:6px}
-.hello img{width:112px;height:auto;flex:none;filter:drop-shadow(0 6px 0 rgba(24,34,74,.12))}
-.say{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:12px 18px;font-family:"Jua",sans-serif;font-size:1.15rem;line-height:1.45}
-.say::after{content:"";position:absolute;left:-9px;top:50%;margin-top:-7px;width:14px;height:14px;background:var(--surface);border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
+.wrap{flex:1;min-height:0;width:100%;max-width:calc(1480px + 5vw);margin:0 auto;padding:.7rem 2.5vw .6rem;display:flex;flex-direction:column;gap:.9rem}
+.intro{flex:none;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.hello{display:flex;align-items:center;gap:.9rem;flex:none}
+.hello img{height:4.6rem;width:auto;flex:none}
+.say{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:1.1rem;padding:.6rem 1.1rem;font-family:"Jua",sans-serif;font-size:1.1rem;line-height:1.4;white-space:nowrap}
+.say::after{content:"";position:absolute;left:-.5rem;top:50%;margin-top:-.42rem;width:.84rem;height:.84rem;background:var(--surface);border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
 .say b{color:var(--blue);font-weight:400}
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;counter-reset:s}
-.steps li{counter-increment:s;background:var(--surface);border:2.5px solid var(--line);border-radius:18px;padding:10px 12px 10px 50px;position:relative;font-size:.95rem;line-height:1.35;min-height:64px;display:flex;flex-direction:column;justify-content:center}
-.steps li::before{content:counter(s);position:absolute;left:10px;top:50%;margin-top:-15px;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-family:"Jua",sans-serif;display:flex;align-items:center;justify-content:center}
-.steps b{display:block;font-family:"Jua",sans-serif;font-weight:400;font-size:1.08rem;color:var(--ink)}
-.steps span{color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:flex;gap:.7rem;counter-reset:s;flex:none}
+.steps li{counter-increment:s;background:var(--surface);border:2.5px solid var(--line);border-radius:1rem;padding:.5rem 1rem .5rem 3rem;position:relative;line-height:1.3;min-width:12.5rem}
+.steps li::before{content:counter(s);position:absolute;left:.75rem;top:50%;margin-top:-.85rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--grad);color:#fff;font-family:"Jua",sans-serif;display:flex;align-items:center;justify-content:center}
+.steps b{display:block;font-family:"Jua",sans-serif;font-weight:400;font-size:1.05rem;color:var(--ink)}
+.steps span{color:var(--muted);font-size:.88rem}
 
-.sec{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px;margin:0 0 12px}
-.sec h2{margin:0;font-size:1.55rem}
-.sec span{color:var(--muted);font-size:.95rem}
-
-.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.zone{--c:var(--blue);--soft-c:#E4E9FF;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:2.5px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 5px 0 var(--line);transition:transform .12s,box-shadow .12s}
+.zones{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.zone{--c:var(--blue);--soft-c:#E4E9FF;min-height:0;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:2.5px solid var(--line);border-radius:1.4rem;overflow:hidden;box-shadow:0 5px 0 var(--line);transition:transform .12s,box-shadow .12s}
 .zone:hover{transform:translateY(-4px);box-shadow:0 9px 0 var(--line)}
 .zone:active{transform:translateY(5px);box-shadow:0 0 0 var(--line)}
 .zone:focus-visible{outline:4px solid var(--violet);outline-offset:4px}
-.zone .pic{position:relative;height:158px;display:flex;align-items:flex-end;justify-content:center;border-bottom:2.5px solid var(--line);background:var(--soft-c)}
-.zone .pic img{height:146px;width:auto;max-width:86%;object-fit:contain}
-.zone .num{position:absolute;left:12px;top:10px;font-family:"Jua",sans-serif;font-size:.95rem;color:#fff;background:var(--c);border:2px solid var(--line);border-radius:999px;padding:1px 11px}
-.zone .time{position:absolute;right:12px;top:10px;font-size:.82rem;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:1px 10px}
-.zone .body{flex:1;display:flex;flex-direction:column;padding:14px 18px 18px}
-.zone .en{font-family:"Jua",sans-serif;font-size:1.55rem;line-height:1.1;color:var(--c);letter-spacing:.01em}
-.zone h3{font-size:1.15rem;line-height:1.3;margin:2px 0 8px}
-.zone p{margin:0 0 14px;color:var(--muted);font-size:.97rem;line-height:1.5}
-.zone .gift{margin-top:auto;display:flex;align-items:center;gap:10px;padding-top:12px;border-top:2px dashed var(--soft);font-size:.9rem;color:var(--ink)}
-.zone .gift .chips{display:flex;gap:4px;flex:none}
-.gift .off{opacity:.2}
-.zone .gift i{font-style:normal;font-family:"Jua",sans-serif;font-size:.9rem;color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
-.gift .g3{background:var(--violet)} .gift .g2{background:var(--blue)} .gift .g1{background:var(--ok)}
-.zone .btn{padding-top:14px}
-.zone .btn span{display:block;text-align:center;font-family:"Jua",sans-serif;font-size:1.2rem;color:#fff;background:var(--c);border:2.5px solid var(--line);border-radius:999px;padding:9px;box-shadow:0 3px 0 var(--line)}
+.zone .pic{position:relative;flex:1;min-height:5rem;display:flex;align-items:flex-end;justify-content:center;border-bottom:2.5px solid var(--line);background:var(--soft-c);padding-top:.6rem}
+.zone .pic img{height:100%;max-height:15rem;width:auto;max-width:86%;object-fit:contain}
+.zone .num{position:absolute;left:.75rem;top:.6rem;font-family:"Jua",sans-serif;font-size:.95rem;color:#fff;background:var(--c);border:2px solid var(--line);border-radius:999px;padding:0 .7rem}
+.zone .time{position:absolute;right:.75rem;top:.6rem;font-size:.82rem;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:0 .6rem}
+.zone .body{flex:none;display:flex;flex-direction:column;padding:.7rem 1.1rem .9rem}
+.zone .en{font-family:"Jua",sans-serif;font-size:1.5rem;line-height:1.1;color:var(--c);letter-spacing:.01em}
+.zone h3{font-size:1.1rem;line-height:1.3;margin:.15rem 0 .35rem}
+.zone p{margin:0 0 .6rem;color:var(--muted);font-size:.93rem;line-height:1.45;min-height:2.9em}
+.zone .gift{display:flex;align-items:center;gap:.6rem;padding-top:.65rem;border-top:2px dashed var(--soft);font-size:.88rem;color:var(--ink)}
+.zone .gift .chips{display:flex;gap:.25rem;flex:none}
+.zone .gift i{font-style:normal;font-family:"Jua",sans-serif;font-size:.85rem;color:#fff;width:1.45rem;height:1.45rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.gift .g3{background:var(--violet)} .gift .g2{background:var(--blue)} .gift .g1{background:var(--ok)} .gift .off{opacity:.2}
+.zone .btn{padding-top:.65rem}
+.zone .btn span{display:block;text-align:center;font-family:"Jua",sans-serif;font-size:1.15rem;color:#fff;background:var(--c);border:2.5px solid var(--line);border-radius:999px;padding:.45rem;box-shadow:0 3px 0 var(--line)}
 .za{--c:#4A6BE0;--soft-c:#E8EEFF} .zb{--c:var(--blue);--soft-c:#E2E8FF}
 .zc{--c:var(--violet);--soft-c:#EDE7FF} .zd{--c:#9447C9;--soft-c:#F2E6FB}
 
-.bottom{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;margin-top:26px;align-items:stretch}
-.prizes{display:flex;flex-direction:column;justify-content:center;background:var(--surface);border:2.5px solid var(--line);border-radius:24px;padding:16px 18px;box-shadow:0 5px 0 var(--line)}
-.prizes h2{margin:0 0 10px;font-size:1.3rem}
-.plist span{min-width:0}
-.plist{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.plist div{display:flex;align-items:center;gap:10px;border:2px solid var(--soft);border-radius:16px;padding:8px 10px}
-.plist i{flex:none;font-style:normal;font-family:"Jua",sans-serif;font-size:1.25rem;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--line)}
-.plist b{display:block;font-family:"Jua",sans-serif;font-weight:400;font-size:1.08rem;line-height:1.2}
-.plist small{color:var(--muted);font-size:.8rem}
-.prizes .fine{margin:12px 0 0;text-align:center;font-size:.92rem;line-height:1.5;color:#D93A3A}
-
-.exit{display:flex;flex-direction:column;justify-content:center;gap:6px;text-decoration:none;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px 24px;box-shadow:0 5px 0 var(--line);position:relative;overflow:hidden;
+.bottom{flex:none;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:1.1rem;align-items:stretch}
+.prizes{display:flex;flex-direction:column;justify-content:center;gap:.5rem;background:var(--surface);border:2.5px solid var(--line);border-radius:1.4rem;padding:.65rem 1.2rem .6rem;box-shadow:0 5px 0 var(--line)}
+.prizes h2{margin:0;font-size:1.05rem;line-height:1.2}
+.plist{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.plist div{--pc:var(--ok);--ps:#E3F5EC;display:flex;align-items:center;justify-content:center;gap:.55rem;background:var(--ps);border:2px solid var(--line);border-radius:999px;padding:.3rem .8rem .3rem .3rem}
+.plist .pv{--pc:var(--violet);--ps:#EEE8FF} .plist .pb{--pc:var(--blue);--ps:#E4EAFF}
+.plist i{flex:none;font-style:normal;font-family:"Jua",sans-serif;font-size:1rem;color:#fff;width:1.9rem;height:1.9rem;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--pc);border:2px solid var(--line)}
+.plist b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.05rem;line-height:1.2;white-space:nowrap}
+.prizes .fine{margin:0;text-align:center;font-size:.85rem;line-height:1.3;color:#D93A3A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exit{display:flex;align-items:center;gap:1.2rem;color:#fff;border:2.5px solid var(--line);border-radius:1.4rem;padding:.6rem 1.4rem;box-shadow:0 5px 0 var(--line);position:relative;overflow:hidden;
   background:radial-gradient(420px 180px at 95% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(120deg,#16285E,#4B3AA8)}
-.exit .tagx{font-family:"Jua",sans-serif;font-size:.92rem;opacity:.8}
-.exit h3{margin:0;font-size:2.2rem;line-height:1.1;letter-spacing:.04em}
-.exit p{margin:0;opacity:.9;font-size:1rem}
+.exit .tx{flex:1;min-width:0}
+.exit .tagx{font-family:"Jua",sans-serif;font-size:.85rem;opacity:.8}
+.exit h3{margin:0;font-size:2.1rem;line-height:1.05;letter-spacing:.04em}
+.exit p{margin:.2rem 0 0;opacity:.9;font-size:.92rem;line-height:1.4}
 .exit p b{color:#FFD45C;font-weight:400;font-family:"Jua",sans-serif}
-.exit .cta{align-self:flex-start;margin-top:6px;background:#fff;color:var(--night);font-family:"Jua",sans-serif;font-size:1.15rem;border-radius:999px;padding:8px 24px;border:2.5px solid var(--line);box-shadow:none;font-size:1rem;padding:6px 18px}
-.exit svg{position:absolute;right:18px;bottom:14px;opacity:.9}
-footer{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:.9rem;margin-top:28px}
-footer img{width:34px}
+.exit .cta{flex:none;display:flex;flex-direction:column;align-items:center;gap:.3rem;font-family:"Jua",sans-serif;font-size:.9rem;opacity:.95}
+.exit .cta svg{width:3rem;height:3rem}
+footer{flex:none;display:flex;align-items:center;justify-content:center;gap:.5rem;color:var(--muted);font-size:.78rem}
+footer img{height:1.4rem}
 
-/* 작은 화면 */
-@media (max-width:1100px){
+/* 작은 화면(휴대폰·세로 화면)은 원래대로 스크롤 */
+@media (min-width:1000px) and (min-height:560px){ .page{height:100vh} }
+@media (max-width:999px){
+  html{font-size:15px}
+  .intro{flex-direction:column;align-items:stretch}
+  .steps{flex-direction:column}.steps li{min-width:0}
   .zones{grid-template-columns:repeat(2,1fr)}
-  .intro{grid-template-columns:1fr}
+  .zone .pic{flex:none;height:150px}
+  .bottom{grid-template-columns:1fr}
 }
-@media (max-width:860px){ .bottom{grid-template-columns:1fr} }
-@media (max-width:760px){
-  .sky{padding:22px 18px 58px}.sky-in{flex-direction:column;text-align:center;gap:14px}.logo{width:104px}.sky h1{font-size:3rem}
+@media (max-width:640px){
+  .sky{padding:1.2rem 1rem 3rem}.sky-in{flex-direction:column;text-align:center;gap:.8rem}.logo{height:90px}.sky h1{font-size:3rem}
   .info{flex-direction:row;flex-wrap:wrap;justify-content:center}.info div{min-width:0;text-align:left}
-  .wrap{padding:0 16px 32px}.say{font-size:1.02rem}.hello img{width:90px}
-  .steps{grid-template-columns:1fr}
-  .plist{grid-template-columns:1fr}
+  .wrap{padding:.8rem 1rem 1rem}.say{white-space:normal;font-size:1rem}
+  .zones{grid-template-columns:1fr}
+  .plist{grid-template-columns:1fr}.prizes .fine{white-space:normal}
 }
-@media (max-width:520px){ .zones{grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){.stars i{animation:none}.zone{transition:none}}
 </style>
 </head>
 <body>
-
+<div class="page">
 <header class="sky">
   <div class="stars" id="stars" aria-hidden="true"></div>
   <div class="sky-in">
     <img class="logo" src="assets/img/logo-white.png" alt="인공지능융합대학 제3대 학생회 하성 로고">
     <div class="title">
-      <span class="pill">2026 KW Epilogue · 인로와융</span>
-      <h1>인융 <em>ATTACK</em></h1>
+      <span class="pill">2026 KW EPILOGUE : 인공지능융합대학</span>
+      <h1><span class="pre">인로와융 :</span> 인융 <em>ATTACK</em></h1>
       <p>4가지 ATTACK에 도전하고 본부에서 <b>상품</b> 받아 가세요!</p>
     </div>
     <div class="info">
@@ -146,15 +150,14 @@ footer img{width:34px}
     </div>
     <ol class="steps">
       <li><b>ATTACK 고르기</b><span>4개 중 자유 선택</span></li>
-      <li><b>결과 기억하기</b><span>재도전 자유</span></li>
+      <li><b>결과 기억하기</b><span>예: “B - 중”</span></li>
       <li><b>본부에서 상품 수령</b><span>추첨은 2개 이상부터</span></li>
     </ol>
   </div>
 
-  <div class="sec"><h2>도전할 ATTACK 고르기</h2><span>하나만 해도 상품 증정</span></div>
   <div class="zones">
     <a class="zone za" href="ram/">
-      <div class="pic"><span class="num">01</span><span class="time">약 1분</span><img src="assets/img/koyung-ce.webp" alt=""></div>
+      <div class="pic"><span class="num">A</span><span class="time">약 1분</span><img src="assets/img/koyung-ce.webp" alt=""></div>
       <div class="body">
         <div class="en">MEMORY ATTACK</div>
         <h3>5초 기억력 승부</h3>
@@ -164,7 +167,7 @@ footer img{width:34px}
       </div>
     </a>
     <a class="zone zb" href="coding/">
-      <div class="pic"><span class="num">02</span><span class="time">2~3분</span><img src="assets/img/koyung-sw.webp" alt=""></div>
+      <div class="pic"><span class="num">B</span><span class="time">2~3분</span><img src="assets/img/koyung-sw.webp" alt=""></div>
       <div class="body">
         <div class="en">CODE ATTACK</div>
         <h3>코드를 완성하라</h3>
@@ -174,7 +177,7 @@ footer img{width:34px}
       </div>
     </a>
     <a class="zone zc" href="major/">
-      <div class="pic"><span class="num">03</span><span class="time">약 2분</span><img src="assets/img/koyung-if.webp" alt=""></div>
+      <div class="pic"><span class="num">C</span><span class="time">약 2분</span><img src="assets/img/koyung-if.webp" alt=""></div>
       <div class="body">
         <div class="en">TYPE ATTACK</div>
         <h3>나의 AI 유형 발견</h3>
@@ -184,7 +187,7 @@ footer img{width:34px}
       </div>
     </a>
     <a class="zone zd" href="jjinyung/">
-      <div class="pic"><span class="num">04</span><span class="time">약 1분</span><img src="assets/img/koyung-rb.webp" alt=""></div>
+      <div class="pic"><span class="num">D</span><span class="time">약 1분</span><img src="assets/img/koyung-rb.webp" alt=""></div>
       <div class="body">
         <div class="en">KOYUNG ATTACK</div>
         <h3>진짜 코융이를 찾아라</h3>
@@ -199,23 +202,25 @@ footer img{width:34px}
     <section class="prizes" aria-labelledby="ptitle">
       <h2 id="ptitle">이런 상품을 받아요</h2>
       <div class="plist">
-        <div><i style="background:var(--violet)">상</i><span><b>보조 배터리</b></span></div>
-        <div><i style="background:var(--blue)">중</i><span><b>키캡 키링</b></span></div>
-        <div><i style="background:var(--ok)">하</i><span><b>리무버블 스티커</b></span></div>
+        <div class="pv"><i>상</i><b>보조 배터리</b></div>
+        <div class="pb"><i>중</i><b>키캡 키링</b></div>
+        <div class="pg"><i>하</i><b>리무버블 스티커</b></div>
       </div>
-      <p class="fine">상품은 체험 후 본부에서 일괄 수령 · ATTACK별 최고 등급 1개<br>스티커는 3종 중 택 1 · 준비 수량 소진 시 조기 마감</p>
+      <p class="fine">상품은 본부에서 ATTACK별 1개씩 지급됩니다. 수량 소진 시 조기 마감되니 서둘러 도전하세요!</p>
     </section>
     <div class="exit">
-      <div class="tagx">본부 · 추첨 이벤트</div>
-      <h3>EVENT</h3>
-      <p>ATTACK <b>2개 이상</b> 완료 시<br>3종 세트 추첨 응모 가능</p>
-      <span class="cta">본부에서 응모</span>
-      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg>
+      <div class="tx">
+        <div class="tagx">본부 · 추첨 이벤트</div>
+        <h3>EVENT</h3>
+        <p>ATTACK <b>2개 이상</b> 완료 시 3종 세트 추첨 응모 가능</p>
+      </div>
+      <div class="cta"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg>본부에서 응모</div>
     </div>
   </div>
 
   <footer><img src="assets/img/logo-blue.png" alt="">인공지능융합대학 제3대 학생회 하성 · 기획국</footer>
 </main>
+</div>
 
 <script>
 (function(){

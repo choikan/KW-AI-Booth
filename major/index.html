@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css">
-<script src="../assets/booth.js" charset="utf-8"></script>
+<link rel="stylesheet" href="../assets/common.css?v=1122">
+<script src="../assets/booth.js?v=1122" charset="utf-8"></script>
 <link rel="icon" href="../assets/img/logo-blue.png">
 <style>
 :root{ --r:var(--violet); --dv:var(--blue); --ap:var(--ok); }
@@ -136,13 +136,13 @@ body.personal .booth-only{display:none!important}
 <body>
 <header class="kw-bar"><div class="kw-bar-in">
   <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>인융 ATTACK<small>인공지능융합대학 학생회 하성</small></span></a>
-  <span class="kw-zone"><b>3</b>TYPE ATTACK</span>
+  <span class="kw-zone"><b>C</b>TYPE ATTACK</span>
   <a class="kw-all" href="../">전체 ATTACK</a>
 </div></header>
 <div class="wrap">
 
 <section class="screen on" id="s-start">
-  <div class="center"><span class="tag">ATTACK 03 · 나의 AI 유형 발견</span></div>
+  <div class="center"><span class="tag">ATTACK C · 나의 AI 유형 발견</span></div>
   <div class="hero"><div class="bubble">우리 넷 중에<br>누구랑 닮았을까?</div><img src="../assets/img/koyung-hi.webp" alt="손 흔드는 코융이"></div>
   <h1>나에게 맞는<br><em>AI 전공</em>은?</h1>
   <p class="center muted">12개 질문에 답하면 16가지 유형 중 나와 맞는 학부와 진출 분야를 알려 줘요.<br>맞고 틀리는 건 없어요. 끝까지 하면 본부에서 스티커를 받아요!</p>
@@ -395,7 +395,7 @@ $("#btnPdf").onclick=()=>{ try{ window.print(); }catch(e){} };
 const shared=parseHash();
 if(shared) renderResult(shared.code, shared.rda, shared.axes, true);
 
-document.getElementById("rStamp").innerHTML=BOOTH.stamp("하","", "TYPE ATTACK");
+document.getElementById("rStamp").innerHTML=BOOTH.stamp("하","", "C");
 </script>
 </body>
 </html>

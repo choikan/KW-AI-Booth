@@ -10,17 +10,15 @@ window.BOOTH = (function(){
     "참가상": {name:"참가상",          cls:"p0", note:"아쉽지만 도전해 줘서 고마워요!"}
   };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  /* grade: "상" | "중" | "하" | "참가상",  extra: 한 줄 추가 안내(선택),  attack: "CODE ATTACK" 등
-     참가자는 이 화면의 문구를 기억했다가 본부(운영본부)에서 말하고 상품을 받아요. */
-  function stamp(grade, extra, attack){
+  /* 보상 박스. grade: "상"|"중"|"하"|"참가상", note: 짧은 추가 안내(선택), attack: ATTACK 알파벳 "A"~"D" */
+  function stamp(grade, note, attack){
     const p = PRIZES[grade] || PRIZES["하"];
-    const say = `${attack ? attack+" " : ""}${grade}`;
-    const josa = /[상중]$/.test(grade) ? "이라고" : "라고";
-    const prizeLine = grade==="참가상" ? "참가상" : `${grade} 상품 · ${p.name}`;
-    const sub = [prizeLine, p.note, extra].filter(Boolean).map(esc).join(" · ");
-    return `<div class="prize-stamp ${p.cls}" role="status">
-      <div class="g${grade.length>1?" small":""}">${esc(grade)}</div>
-      <div><small>본부에서 이렇게 말해 주세요</small><b>“${esc(say)}”</b><span>${sub}</span></div>
+    const say = attack ? `${attack} - ${grade}` : grade;
+    return `<div class="reward ${p.cls}" role="status">
+      <div class="rw-h">REWARD · 보상</div>
+      <div class="rw-main"><span class="g">${esc(grade==="참가상"?"참":grade)}</span><b>${esc(grade==="참가상"?"참가상":p.name)}</b></div>
+      <div class="rw-say">본부에서 <b>“${esc(say)}”</b>라고 말해 주세요</div>
+      ${note?`<div class="rw-note">${esc(note)}</div>`:""}
     </div>`;
   }
   return {PRIZES, stamp, esc};

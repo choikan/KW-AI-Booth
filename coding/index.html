@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css">
+<link rel="stylesheet" href="../assets/common.css?v=1122">
 <link rel="icon" href="../assets/img/logo-blue.png">
-<script src="../assets/booth.js" charset="utf-8"></script>
+<script src="../assets/booth.js?v=1122" charset="utf-8"></script>
 <style>
   :root{
     --card:var(--surface);
@@ -142,12 +142,12 @@
 <body>
 <header class="kw-bar"><div class="kw-bar-in">
   <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>인융 ATTACK<small>인공지능융합대학 학생회 하성</small></span></a>
-  <span class="kw-zone"><b>2</b>CODE ATTACK</span>
+  <span class="kw-zone"><b>B</b>CODE ATTACK</span>
   <a class="kw-all" href="../">전체 ATTACK</a>
 </div></header>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>ATTACK 02 · 코드를 완성하라</small><b>CODE ATTACK</b></div>
+    <div class="brand"><small>ATTACK B · 코드를 완성하라</small><b>CODE ATTACK</b></div>
     <button class="ghost" id="homeBtn" type="button">처음으로</button>
   </header>
   <main id="app" aria-live="polite"></main>
@@ -402,7 +402,7 @@ function renderFinish(){
       <div class="stat"><b>${S.hints}</b><span>힌트 사용</span></div>
       <div class="stat"><b>${S.reveals}</b><span>정답 보기</span></div>
     </div>
-    ${BOOTH.stamp(prizeGrade, S.reveals?`정답 보기 사용으로 한 단계 낮아짐`:'', "CODE ATTACK")}
+    ${BOOTH.stamp(prizeGrade, S.reveals?`정답 보기 사용으로 한 단계 낮아짐`:'', "B")}
     <div style="height:22px"></div>
     <div class="row center">
       ${nextLv?`<button type="button" class="primary" id="upBtn">난이도 ${LEVELS[nextLv].name} 도전하기</button>`:''}
