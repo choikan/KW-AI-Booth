@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css?v=1122c">
-<script src="../assets/booth.js?v=1122c" charset="utf-8"></script>
+<link rel="stylesheet" href="../assets/common.css?v=1122f">
+<script src="../assets/booth.js?v=1122f" charset="utf-8"></script>
 <link rel="icon" href="../assets/img/logo-blue.png">
 <style>
 :root{ --r:var(--violet); --dv:var(--blue); --ap:var(--ok); }
@@ -119,15 +119,11 @@ body.personal .booth-only{display:none!important}
   #s-q .opts button{flex-direction:column;justify-content:center;text-align:center;min-height:200px;font-size:1.4rem;padding:24px;box-shadow:0 5px 0 var(--line)}
   #s-q .opts button:hover{background:var(--blue-soft)}
   #s-q .opts button .k{width:44px;height:44px;font-size:1.3rem;background:var(--grad);color:#fff;border-color:var(--line)}
-  #s-result.on{display:grid;grid-template-columns:400px 1fr;column-gap:28px;align-items:start}
-  .rleft{position:sticky;top:76px;display:flex;flex-direction:column}
-  .rleft>.stack{order:1;margin-top:4px}
-  .rleft>.box.booth-only{order:2}
-  .rleft>.box{margin:12px 0}
-  .rright .box:first-child{margin-top:0}
-  .rright{columns:2;column-gap:16px}
-  .rright .box{margin:0 0 16px;break-inside:avoid;display:inline-block;width:100%}
-  .rchar{width:190px}
+  #s-result.on{display:grid;grid-template-columns:1fr 1.05fr 1fr;column-gap:22px;align-items:start}
+  .rleft{display:flex;flex-direction:column}
+  .rmid>.box,.rcol>.box{margin:0 0 16px}
+  .rleft .reward{margin-top:14px}
+  .rchar{width:165px}
   .rtitle{font-size:2rem}
   #s-result>.note{grid-column:1 / -1}
 }
@@ -168,51 +164,46 @@ body.personal .booth-only{display:none!important}
   <h2 class="rtitle" id="rTitle"></h2>
   <p class="rline" id="rLine"></p>
   <div class="booth-only noprint" id="rStamp"></div>
-  <div class="box"><p id="rDesc" style="margin:0"></p></div>
-  <div class="box booth-only noprint">
+  <div class="box booth-only noprint" style="margin-top:14px">
     <h3>내 결과 가져가기</h3>
     <div class="qr">
       <div class="img" id="qrBox"></div>
       <p style="margin:0">휴대폰 카메라로 QR을 찍으면 내 결과 페이지가 열려요. 거기서 <b>PDF로 저장</b>을 누르면 파일로 간직할 수 있어요.</p>
     </div>
   </div>
-
-  <div class="stack noprint">
+  <div class="stack noprint personal-only" style="margin-top:12px">
     <button class="primary personal-only" id="btnPdf">PDF로 저장</button>
-    <button class="primary booth-only" id="btnNext">다음 사람</button>
-    <button class="booth-only" id="btnRetry">다시 하기</button>
     <button class="personal-only" id="btnMine">나도 다시 해보기</button>
   </div>
   </div>
-  <div class="rright">
 
+  <div class="rmid">
+  <div class="box"><p id="rDesc" style="margin:0"></p></div>
   <div class="box">
     <h3>나의 연구 · 개발 · 응용 가능성</h3>
     <div class="rda" id="rRda"></div>
     <div class="rdabar" id="rRdaBar" aria-hidden="true"></div>
   </div>
-
   <div class="box">
     <h3>나의 성향</h3>
     <div id="rAxes"></div>
   </div>
+  </div>
 
+  <div class="rcol">
   <div class="box">
     <h3 id="rCourseTitle">이런 과목을 배워요</h3>
     <ul class="courses" id="rCourses"></ul>
     <p class="note" id="rDeptNote"></p>
   </div>
-
   <div class="box">
     <h3>이런 일을 할 수 있어요</h3>
     <div class="jobs" id="rJobs"></div>
   </div>
-
   <div class="box">
     <h3 id="rOthersTitle">같은 학부의 다른 진출 분야</h3>
     <div class="others" id="rOthers"></div>
   </div>
-
   </div>
   <p class="note center">인융 ATTACK · 과목은 2026학년도 2학기 인공지능융합대학 개설 과목을 기준으로 골랐어요.</p>
 </section>
@@ -387,8 +378,7 @@ function parseHash(){
 }
 
 $("#btnStart").onclick=start;
-$("#btnRetry").onclick=start;
-$("#btnNext").onclick=()=>{ history.replaceState(null,"",location.pathname+location.search); show("start"); };
+
 $("#btnMine").onclick=()=>{ history.replaceState(null,"",location.pathname+location.search); document.body.classList.remove("personal"); start(); };
 $("#btnPdf").onclick=()=>{ try{ window.print(); }catch(e){} };
 

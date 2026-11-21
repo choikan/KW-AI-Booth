@@ -13,7 +13,7 @@
 /* 표지용 둥근 글씨체: 카페24 써라운드 (무료 폰트, 안 불러와지면 Jua로 표시) */
 @font-face{font-family:"Cafe24Ssurround";src:url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff") format("woff");font-weight:normal;font-display:swap}
 </style>
-<link rel="stylesheet" href="assets/common.css?v=1122c">
+<link rel="stylesheet" href="assets/common.css?v=1122f">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 /* 화면 높이에 맞춰 전체 크기가 같이 줄고 늘어나요 (rem 기준) */
@@ -33,10 +33,10 @@ h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo",sans-serif;font-weight:400
 .title{flex:1;min-width:0}
 .pill{display:inline-block;font-family:"Cafe24Ssurround","Jua",sans-serif;letter-spacing:.02em;font-size:.95rem;padding:.2rem 1rem;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
 .sky h1{font-family:"Cafe24Ssurround","Jua",sans-serif;font-size:3.5rem;line-height:1.05;margin:.45rem 0 .35rem;letter-spacing:.01em}
-.sky h1 .pre{font-size:.62em;opacity:.92;vertical-align:.18em;margin-right:.1em}
+
 .sky h1 em{font-style:normal;background:linear-gradient(90deg,#FFD45C,#FF9DBE 45%,#C9B5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sky p{margin:0;opacity:.9;font-size:1.1rem}
-.sky p b{font-family:"Cafe24Ssurround","Jua",sans-serif;font-weight:400;color:#FFD45C}
+.sky p b{font-weight:700;color:#FFD45C}
 .info{display:flex;flex-direction:column;gap:.5rem;flex:none}
 .info div{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:1rem;padding:.35rem 1.2rem;min-width:15rem}
 .info small{display:block;font-size:.72rem;opacity:.7;letter-spacing:.12em}
@@ -69,6 +69,7 @@ h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo",sans-serif;font-weight:400
 .zone .body{flex:none;display:flex;flex-direction:column;padding:.7rem 1.1rem .9rem}
 .zone .en{font-family:"Jua",sans-serif;font-size:1.5rem;line-height:1.1;color:var(--c);letter-spacing:.01em}
 .zone h3{font-size:1.1rem;line-height:1.3;margin:.15rem 0 .35rem}
+.zone p .call{color:#D93A3A;font-family:"Jua",sans-serif}
 .zone p{margin:0 0 .6rem;color:var(--muted);font-size:.93rem;line-height:1.45;min-height:2.9em}
 .zone .gift{display:flex;align-items:center;gap:.6rem;padding-top:.65rem;border-top:2px dashed var(--soft);font-size:.88rem;color:var(--ink)}
 .zone .gift .chips{display:flex;gap:.25rem;flex:none}
@@ -90,6 +91,7 @@ h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo",sans-serif;font-weight:400
 .prizes .fine{margin:0;text-align:center;font-size:.85rem;line-height:1.3;color:#D93A3A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .exit{display:flex;align-items:center;gap:1.2rem;color:#fff;border:2.5px solid var(--line);border-radius:1.4rem;padding:.6rem 1.4rem;box-shadow:0 5px 0 var(--line);position:relative;overflow:hidden;
   background:radial-gradient(420px 180px at 95% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(120deg,#16285E,#4B3AA8)}
+.exit{text-decoration:none}.exit:hover{filter:brightness(1.07)}
 .exit .tx{flex:1;min-width:0}
 .exit .tagx{font-family:"Jua",sans-serif;font-size:.85rem;opacity:.8}
 .exit h3{margin:0;font-size:2.1rem;line-height:1.05;letter-spacing:.04em}
@@ -111,7 +113,7 @@ footer img{height:1.4rem}
   .bottom{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .sky{padding:1.2rem 1rem 3rem}.sky-in{flex-direction:column;text-align:center;gap:.8rem}.logo{height:90px}.sky h1{font-size:3rem}
+  .sky{padding:1.2rem 1rem 3rem}.sky-in{flex-direction:column;text-align:center;gap:.8rem}.logo{height:90px}.sky h1{font-size:2.1rem}
   .info{flex-direction:row;flex-wrap:wrap;justify-content:center}.info div{min-width:0;text-align:left}
   .wrap{padding:.8rem 1rem 1rem}.say{white-space:normal;font-size:1rem}
   .zones{grid-template-columns:1fr}
@@ -128,7 +130,7 @@ footer img{height:1.4rem}
     <img class="logo" src="assets/img/logo-white.png" alt="인공지능융합대학 제3대 학생회 하성 로고">
     <div class="title">
       <span class="pill">2026 KW EPILOGUE : 인공지능융합대학</span>
-      <h1><span class="pre">인로와융 :</span> 인융 <em>ATTACK</em></h1>
+      <h1>인로와융 : 인융 <em>ATTACK</em></h1>
       <p>4가지 ATTACK에 도전하고 본부에서 <b>상품</b> 받아 가세요!</p>
     </div>
     <div class="info">
@@ -161,7 +163,7 @@ footer img{height:1.4rem}
       <div class="body">
         <div class="en">MEMORY ATTACK</div>
         <h3>5초 기억력 승부</h3>
-        <p>이미지 9개 5초 관찰 후 30초 안에 제자리 배치</p>
+        <p>이미지 9개 5초 관찰 후 제자리 배치<br><span class="call">도전은 운영진을 불러 주세요!</span></p>
         <div class="gift"><span class="chips"><i class="g3">상</i><i class="g2">중</i><i class="g1">하</i></span><span>맞힌 개수 기준</span></div>
         <div class="btn"><span>규칙 보기</span></div>
       </div>
@@ -208,14 +210,14 @@ footer img{height:1.4rem}
       </div>
       <p class="fine">상품은 본부에서 ATTACK별 1개씩 지급됩니다. 수량 소진 시 조기 마감되니 서둘러 도전하세요!</p>
     </section>
-    <div class="exit">
+    <a class="exit" href="raffle/">
       <div class="tx">
         <div class="tagx">본부 · 추첨 이벤트</div>
         <h3>EVENT</h3>
         <p>ATTACK <b>2개 이상</b> 완료 시 3종 세트 추첨 응모 가능</p>
       </div>
       <div class="cta"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg>본부에서 응모</div>
-    </div>
+    </a>
   </div>
 
   <footer><img src="assets/img/logo-blue.png" alt="">인공지능융합대학 제3대 학생회 하성 · 기획국</footer>

@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css?v=1122c">
-<script src="../assets/booth.js?v=1122c" charset="utf-8"></script>
+<link rel="stylesheet" href="../assets/common.css?v=1122f">
+<script src="../assets/booth.js?v=1122f" charset="utf-8"></script>
 <link rel="icon" href="../assets/img/logo-blue.png">
 <style>
 :root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);}
@@ -103,21 +103,43 @@ button.big{font-size:1.5rem;padding:16px}
 .sub2 button{font-size:1rem;padding:9px 10px;box-shadow:0 2px 0 var(--line);border-width:2px;color:var(--muted)}
 /* ===== 노트북 화면 ===== */
 @media (min-width:900px){
-  .wrap{max-width:1180px;padding:24px 32px 20px}
-  #s-home.on{display:grid;grid-template-columns:1.1fr 1fr;column-gap:56px;align-items:center;min-height:calc(100vh - 150px)}
+  .wrap{max-width:1500px;padding:20px 40px 16px}
+  #s-home.on{display:grid;grid-template-columns:1.1fr 1fr;column-gap:72px;align-items:center;min-height:calc(100vh - 120px);max-width:1280px;margin:0 auto}
   #s-home .hero{margin:14px 0 0}
   .homeR{border:2.5px solid var(--line);border-radius:24px;background:var(--surface);padding:24px 26px;box-shadow:0 5px 0 var(--line)}
   .homeR>p{margin-bottom:16px}
   #s-home .vs{font-size:4.4rem}
   #s-home .vs .v{font-size:1.8rem}
-  #s-home .bubble{font-size:1.25rem}
+  #s-home .bubble{font-size:1.4rem}
+  #s-home .hero{grid-template-columns:min(380px,calc(100vh - 360px)) auto;gap:28px;justify-content:start}
+  #s-home .vs{font-size:6rem}
+  #s-home .vs .v{font-size:2.2rem}
+  #s-home .tag{font-size:1.2rem;padding:5px 18px}
+  .homeR{padding:34px 36px!important}
+  .homeR>p{font-size:1.3rem}
+  .homeR>p .muted{font-size:1.05rem!important}
+  .homeR label{font-size:1.25rem}
+  .lvsel button{font-size:1.7rem;padding:16px 4px}
+  .lvdesc{font-size:1.1rem}
+  #s-home button.big{font-size:2rem;padding:20px}
   #s-home>p{font-size:1.15rem}
-  #s-play.on,#s-recplay.on{display:grid;grid-template-columns:minmax(0,600px) 1fr;column-gap:36px;align-items:start}
-  #s-play .stage,#s-recplay .stage{grid-column:1;grid-row:1 / span 2;width:100%}
-  #s-play .hud,#s-recplay .hud{grid-column:2;position:static;padding-top:0}
-  #s-play .answer{grid-column:2;margin-top:18px}
-  .hudrow{font-size:1.35rem}
-  .timer{font-size:2.6rem}
+  /* 게임 화면: 판을 화면 높이에 꽉 차게, 오른쪽에 큰 HUD */
+  #s-play.on,#s-recplay.on{display:grid;grid-template-columns:min(calc(100vh - 120px),60vw) minmax(340px,1fr);grid-template-rows:1fr auto auto 1fr;column-gap:56px;max-width:1500px;margin:0 auto}
+  #s-play .stage,#s-recplay .stage{grid-column:1;grid-row:1 / 5;width:100%;align-self:center}
+  #s-play .hud,#s-recplay .hud{grid-column:2;grid-row:2;position:static;padding:0}
+  #s-play .answer{grid-column:2;grid-row:3;margin-top:22px}
+  #s-play .hud{background:none}
+  .hudrow{font-size:1.8rem}
+  .rounds b{height:16px}
+  .timer{font-size:5rem}
+  .bar{height:20px}
+  .ansview{font-size:3.4rem;min-height:90px}
+  .pad{gap:12px}
+  .pad button{font-size:2rem;padding:16px 0;border-radius:18px}
+  #answer>p{font-size:1.6rem!important}
+  .cover .big{font-size:9rem}
+  .cover .sub{font-size:1.8rem}
+  .cover img{width:200px;height:200px}
   #s-fail.on,#s-clear.on,#s-recform.on,#s-recres.on,#s-rank.on{max-width:640px;margin:20px auto 0}
 }
 

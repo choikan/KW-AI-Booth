@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css?v=1122c">
-<link rel="stylesheet" href="../assets/page.css?v=1122c">
-<script src="../assets/booth.js?v=1122c" charset="utf-8"></script>
+<link rel="stylesheet" href="../assets/common.css?v=1122f">
+<link rel="stylesheet" href="../assets/page.css?v=1122f">
+<script src="../assets/booth.js?v=1122f" charset="utf-8"></script>
 <style>
 .steps{list-style:none;margin:0;padding:0;counter-reset:s}
 .steps li{position:relative;padding:10px 0 10px 44px;border-bottom:1px dashed var(--soft);counter-increment:s}
@@ -38,6 +38,15 @@
 .grade em{display:block;font-style:normal;font-size:.8rem;color:var(--ink);margin-top:2px}
 .keyhint{font-size:.85rem;margin:2px 0 0}
 .grade{grid-template-columns:repeat(3,1fr)}
+.callstaff{display:flex;flex-direction:column;gap:2px;margin:10px 0 0;padding:10px 16px;border:2.5px solid #D93A3A;border-radius:16px;background:#FDECEC}
+.callstaff b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.2rem;color:#D93A3A}
+.callstaff span{font-size:.9rem;color:var(--ink)}
+.staffonly{display:inline-block;vertical-align:middle;margin-left:6px;font-size:.8rem;color:#fff;background:#D93A3A;border-radius:999px;padding:1px 10px}
+@media (min-width:900px){
+  .cols{align-items:stretch}
+  .cols>.col-sticky{position:static;display:flex;flex-direction:column}
+  #staff{flex:1;display:flex;flex-direction:column;justify-content:center;margin:0!important}
+}
 @media (min-width:900px){
   .hero img{width:120px}
   h1{font-size:2.6rem;margin:4px 0 4px}
@@ -66,9 +75,10 @@
   </div>
   <h1><span class="grad-text">MEMORY</span> ATTACK</h1>
   <p class="lead">5초 기억력 승부! 이미지 9개를 기억했다가 같은 자리에 다시 놓아요.</p>
+  <div class="callstaff"><b>도전하려면 운영진을 불러 주세요!</b><span>카드 배치와 타이머는 운영진이 진행해요.</span></div>
 
   <div class="box">
-    <h3>이렇게 해요</h3>
+    <h3>MEMORY ATTACK RULE</h3>
     <div class="howto">
       <ol class="steps">
         <li><b>5초 관찰</b>가림판이 열리면 9개의 위치를 기억해요.</li>
@@ -86,13 +96,13 @@
       <div class="g2"><b>중</b><span>5~7개</span><em>키캡 키링</em></div>
       <div class="g1"><b>하</b><span>0~4개</span><em>리무버블 스티커</em></div>
     </div>
-    <p class="muted" style="margin:8px 0 0;font-size:.88rem">자리가 다르면 오답 · 시간이 끝난 순간의 배열로 채점해요.</p>
+    <p class="muted" style="margin:8px 0 0;font-size:.88rem">자리가 다르면 오답입니다. 시간이 끝난 순간의 배열로 채점해요.</p>
   </div>
 
   </div>
   <div class="col-sticky">
   <div class="box timer" id="staff" style="margin-top:0">
-    <h3>운영진 타이머</h3>
+    <h3>운영진 타이머 <span class="staffonly">운영진 전용</span></h3>
     <p class="phase" id="phase">준비되면 시작을 눌러 주세요</p>
     <div class="clock" id="clock">5</div>
     <div class="bar"><i id="bar"></i></div>
