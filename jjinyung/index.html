@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css?v=1122">
-<script src="../assets/booth.js?v=1122" charset="utf-8"></script>
+<link rel="stylesheet" href="../assets/common.css?v=1122c">
+<script src="../assets/booth.js?v=1122c" charset="utf-8"></script>
 <link rel="icon" href="../assets/img/logo-blue.png">
 <style>
 :root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);}
@@ -103,7 +103,7 @@ button.big{font-size:1.5rem;padding:16px}
 .sub2 button{font-size:1rem;padding:9px 10px;box-shadow:0 2px 0 var(--line);border-width:2px;color:var(--muted)}
 /* ===== 노트북 화면 ===== */
 @media (min-width:900px){
-  .wrap{max-width:1180px;padding:28px 32px 48px}
+  .wrap{max-width:1180px;padding:24px 32px 20px}
   #s-home.on{display:grid;grid-template-columns:1.1fr 1fr;column-gap:56px;align-items:center;min-height:calc(100vh - 150px)}
   #s-home .hero{margin:14px 0 0}
   .homeR{border:2.5px solid var(--line);border-radius:24px;background:var(--surface);padding:24px 26px;box-shadow:0 5px 0 var(--line)}
@@ -146,7 +146,7 @@ button.big{font-size:1.5rem;padding:16px}
 <section class="screen" id="s-home">
   <div class="homeL">
   <span class="tag">ATTACK D · 진짜 코융이를 찾아라</span>
-  <div class="hero"><img class="heroImg" alt="공식 마스코트 찐융"><div class="herotext"><div class="bubble">나는 코융이야!<br>시작 전에 내 모습을 잘 기억해둬~</div><h1 class="vs"><span>찐융</span><span class="v">VS</span><span>짭융</span></h1></div></div>
+  <div class="hero"><img class="heroImg" alt="공식 마스코트 찐융"><div class="herotext"><div class="bubble">내가 찐융! 내 모습을 잘 기억해둬~</div><h1 class="vs"><span>찐융</span><span class="v">VS</span><span>짭융</span></h1></div></div>
   </div>
   <div class="homeR">
   <p>조금씩 다른 <b>짭융</b> 사이에 숨은 진짜 <b>찐융</b>은 몇 마리일까요?<br><span class="muted" style="font-size:.95rem">3라운드를 모두 맞히면 클리어! 클리어한 난이도의 상품을 본부에서 받아요.</span></p>
@@ -261,7 +261,7 @@ const LEVELS = {
 };
 /* 결과 화면 코융이 대사 (난이도별 짭융) */
 const LV_IMG = {1:"ha", 2:"jung", 3:"sang"};
-const SAY_CLEAR = {1:"들켰다! 치즈융은 너무 티 났나?", 2:"내 머리가 너무 휑해서 티났어ㅜㅜ?", 3:"404, the new era, era"};
+const SAY_CLEAR = {1:"들켰다! 치즈융은 너무 티 났나?", 2:"내 머리가 너무 휑해서 티났어ㅜㅜ?", 3:"404, the new era, era ~ ♬"};
 const SAY_FAIL  = {1:"헤헤, 치즈융한테 속았지?", 2:":P 메롱~ 다시 해 봐!", 3:"404, not found in the system"};
 let BEST = 0; // 이번 참가자가 클리어한 가장 높은 난이도
 const SHOW_RECORD = false; // 기록 도전·순위 버튼 (이번 행사는 순위 기록 안 함)
@@ -377,17 +377,17 @@ async function submit(){
     else {
       BEST=Math.max(BEST,P.lv);
       $("#clearImg").src=IMG[LV_IMG[P.lv]]; $("#clearSay").textContent=SAY_CLEAR[P.lv];
-      $("#clearTitle").textContent=`난이도 ${L.name} 클리어!`;
+      $("#clearTitle").textContent="클리어!";
       $("#clearStamp").innerHTML = BOOTH.stamp(L.name, "", "D");
       if(P.lv<3){ const nx=LEVELS[P.lv+1].name;
-        $("#nextSub").textContent=`성공 시 ${nx} 상품 · 실패 시 ${L.name} 상품`; $("#btnNextLv").hidden=false;
+        $("#nextSub").textContent=`성공 시 ${BOOTH.PRIZES[nx].name} · 실패해도 ${BOOTH.PRIZES[L.name].name}`; $("#btnNextLv").hidden=false;
       } else $("#btnNextLv").hidden=true;
       show("clear");
     }
   } else {
     $("#failImg").src=IMG[LV_IMG[P.lv]]; $("#failSay").textContent=SAY_FAIL[P.lv];
     $("#failMsg").textContent=`ROUND ${P.r+1} 정답 ${P.answer}마리 · 입력 ${P.input}마리`;
-    $("#failStamp").innerHTML = BEST ? BOOTH.stamp(LEVELS[BEST].name, "앞 단계 보상은 그대로", "D") : "";
+    $("#failStamp").innerHTML = BEST ? BOOTH.stamp(LEVELS[BEST].name, "앞 단계 보상 유지", "D") : "";
     show("fail");
   }
 }

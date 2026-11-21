@@ -71,3 +71,7 @@
 
 /* 한글이 단어 중간에서 끊기지 않게 */
 body{word-break:keep-all;overflow-wrap:break-word}
+
+/* 코융이 말풍선은 한 줄로 (좁은 휴대폰 화면만 줄바꿈 허용) */
+.bubble,.say,.say2{white-space:nowrap}
+@media (max-width:520px){ .bubble,.say,.say2{white-space:normal} }

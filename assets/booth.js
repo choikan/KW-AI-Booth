@@ -17,9 +17,33 @@ window.BOOTH = (function(){
     return `<div class="reward ${p.cls}" role="status">
       <div class="rw-h">REWARD · 보상</div>
       <div class="rw-main"><span class="g">${esc(grade==="참가상"?"참":grade)}</span><b>${esc(grade==="참가상"?"참가상":p.name)}</b></div>
-      <div class="rw-say">본부에서 <b>“${esc(say)}”</b>라고 말해 주세요</div>
+      <div class="rw-say">본부에서 말하기 · <b>${esc(say)}</b></div>
       ${note?`<div class="rw-note">${esc(note)}</div>`:""}
     </div>`;
   }
   return {PRIZES, stamp, esc};
+})();
+
+/* ==========================================================
+   화면 맞춤: 노트북·모니터(가로 900px 이상)에서 내용이 화면보다 길면
+   스크롤 없이 한 화면에 들어오도록 전체를 살짝 축소해요.
+   ========================================================== */
+(function(){
+  const MIN = 0.5;                  // 이보다 작게는 줄이지 않아요
+  function fit(){
+    const b = document.documentElement; if(!document.body) return;
+    b.style.zoom = "";
+    if(innerWidth < 900) return;      // 휴대폰·세로 화면은 원래대로 스크롤
+    const h = document.documentElement.scrollHeight;
+    const z = Math.max(MIN, Math.min(1, (innerHeight - 2) / h));
+    if(z < 0.995) b.style.zoom = z.toFixed(3);
+  }
+  let q = 0; const sched = () => { cancelAnimationFrame(q); q = requestAnimationFrame(fit); };
+  addEventListener("load", sched); addEventListener("resize", sched);
+  document.addEventListener("DOMContentLoaded", () => {
+    sched();
+    new MutationObserver(sched).observe(document.body, {subtree:true, childList:true, attributes:true, attributeFilter:["class","hidden"]});
+    document.querySelectorAll("img").forEach(i => i.addEventListener("load", sched));
+  });
+  window.BOOTH_FIT = sched;
 })();
