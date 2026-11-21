@@ -43,6 +43,12 @@ label.f{display:block;margin:0 0 4px;font-size:1rem}
 .atk .sub{font-size:.78rem;color:#D93A3A;margin-left:6px}
 .handout{margin-top:10px;border:2.5px dashed var(--ok);border-radius:16px;background:#E8F7EF;padding:10px 14px;font-family:"Jua",sans-serif;font-size:1.15rem;text-align:center;min-height:1em}
 .handout:empty{display:none}
+.handout{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px}
+.hc{display:inline-flex;align-items:center;gap:8px;font-family:"Jua",sans-serif;font-size:1.5rem;background:#fff;border:2.5px solid var(--line);border-radius:999px;padding:4px 18px 4px 6px}
+.hc i{font-style:normal;width:2rem;height:2rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+.hc.g1 i{background:var(--ok)} .hc.g2 i{background:var(--blue)} .hc.g3 i{background:var(--violet)}
+.hc b{font-weight:400;font-size:1.9rem;color:#D93A3A;margin-left:2px}
+.hnote{flex-basis:100%;text-align:center;font-family:"Gowun Dodum",sans-serif;font-size:.85rem;color:var(--muted)}
 .ev{display:flex;flex-direction:column;background:radial-gradient(320px 150px at 95% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(135deg,#16285E,#4B3AA8);color:#fff}
 .ev h2{color:#fff}
 .ev .lead{margin:0 0 12px;opacity:.9}
@@ -255,10 +261,14 @@ $("#btnGive").onclick=()=>{
   if(!p.a) p.a=Object.assign({},p.g);
   const pl=plan(p,pick), out=[];
   for(const [k,g] of Object.entries(pick)){ if(p.g[k]) continue; p.g[k]=g; p.a[k]=pl[k];
-    out.push(`${k} ${g}${pl[k]!==g?"→하":""} · ${PRIZE[pl[k]]}`); }
+    out.push({k, g:pl[k], from:g, swap:pl[k]!==g}); }
   if(!save()) return;
   autoBackup();
-  pick={}; $("#handout").innerHTML="지급: "+out.map(esc).join(" / ");
+  pick={};
+  const cnt={}; out.forEach(o=>{ cnt[o.g]=(cnt[o.g]||0)+1; });
+  const SHORT={"상":"보조 배터리","중":"키캡 키링","하":"스티커"};
+  $("#handout").innerHTML = ["상","중","하"].filter(g=>cnt[g]).map(g=>`<span class="hc ${GCLS[g]}"><i>${g}</i>${SHORT[g]} <b>${cnt[g]}</b></span>`).join("")
+    + (out.some(o=>o.swap)?`<div class="hnote">${out.filter(o=>o.swap).map(o=>`${o.k} ${o.from}→하`).join(" · ")} (중복 등급은 스티커)</div>`:"");
   $("#state").innerHTML=`<b>${esc(cur.name)}</b> (${cur.last4}) · 기록 완료! 아래 상품을 건네 주세요.`;
   render(); renderStats(); refreshAdmin();
 };
