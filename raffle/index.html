@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/common.css?v=1122f">
-<link rel="stylesheet" href="../assets/page.css?v=1122f">
-<script src="../assets/booth.js?v=1122f" charset="utf-8"></script>
+<link rel="stylesheet" href="../assets/common.css?v=1122g">
+<link rel="stylesheet" href="../assets/page.css?v=1122g">
+<script src="../assets/booth.js?v=1122g" charset="utf-8"></script>
 <style>
 .hq{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:stretch}
 .card{border:2.5px solid var(--line);border-radius:22px;background:var(--surface);padding:18px 20px;box-shadow:0 4px 0 var(--line)}
@@ -38,7 +38,9 @@ label.f{display:block;margin:0 0 4px;font-size:1rem}
 .atk .r.done{background:#F3F5FA}
 .atk .r.done .seg button{pointer-events:none}
 .atk .tagdone{font-size:.78rem;color:var(--muted);margin-left:6px}
-.give{margin-top:12px}
+.give{margin-top:8px}
+.rule{margin:12px 0 0;text-align:center;font-size:.88rem;color:#D93A3A}
+.atk .sub{font-size:.78rem;color:#D93A3A;margin-left:6px}
 .handout{margin-top:10px;border:2.5px dashed var(--ok);border-radius:16px;background:#E8F7EF;padding:10px 14px;font-family:"Jua",sans-serif;font-size:1.15rem;text-align:center;min-height:1em}
 .handout:empty{display:none}
 .ev{display:flex;flex-direction:column;background:radial-gradient(320px 150px at 95% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(135deg,#16285E,#4B3AA8);color:#fff}
@@ -47,7 +49,7 @@ label.f{display:block;margin:0 0 4px;font-size:1rem}
 .evbody{flex:1;display:flex;flex-direction:column;justify-content:center}
 .evcenter{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
 .evcenter[hidden],.evform[hidden]{display:none}
-.evcenter img{width:130px;height:auto}
+.evcenter img{width:170px;height:auto;filter:drop-shadow(0 6px 0 rgba(0,0,0,.2))}
 .evcenter p{margin:0;font-family:"Jua",sans-serif;font-size:1.15rem;opacity:.9}
 .evlabel{font-size:1rem!important;opacity:.75!important;letter-spacing:.1em}
 .evbtns{display:grid;grid-template-columns:2fr 1fr;gap:8px}
@@ -82,7 +84,7 @@ tr.win td{color:var(--violet);font-weight:700}
 @media (max-width:899px){ .hq,.admin{grid-template-columns:1fr} .stats{grid-template-columns:repeat(3,1fr)} .who{grid-template-columns:1fr 1fr} }
 </style>
 </head>
-<body>
+<body data-nofit>
 <header class="kw-bar"><div class="kw-bar-in">
   <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>인융 ATTACK<small>인공지능융합대학 학생회 하성</small></span></a>
   <span class="kw-zone"><b>★</b>본부</span>
@@ -117,6 +119,7 @@ tr.win td{color:var(--violet);font-weight:700}
       </div>
       <p class="state" id="state">이름과 전화번호 뒤 4자리를 입력하고 확인을 눌러 주세요.</p>
       <div class="atk" id="atk"></div>
+      <p class="rule">보조 배터리(상)·키캡 키링(중)은 1인 1개씩 · 같은 등급이 또 나오면 스티커(하)로 지급</p>
       <button class="primary full give" id="btnGive" disabled>상품 지급 기록</button>
       <div class="handout" id="handout"></div>
     </section>
@@ -126,7 +129,7 @@ tr.win td{color:var(--violet);font-weight:700}
       <h2><span class="n">2</span>EVENT 응모</h2>
       <p class="lead">ATTACK 2개 이상 완료 시 · 3종 세트 추첨</p>
       <div class="evbody">
-        <div class="evcenter" id="evLock"><img src="../assets/img/koyung-if.webp" alt=""><p>ATTACK을 2개 이상 기록하면 열려요</p></div>
+        <div class="evcenter" id="evLock"><img src="../assets/img/koyung-laptop.webp" alt="노트북 하는 코융이"><p>ATTACK을 2개 이상 기록하면 열려요</p></div>
         <div class="evform" id="evForm" hidden>
           <label class="f" for="fPhone">전화번호 11자리 (당첨 연락용)</label>
           <input type="tel" id="fPhone" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="010-0000-0000">
@@ -199,7 +202,13 @@ const keyOf=(n,l)=>`${n}|${l}`;
 function rand(n){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%n; }
 
 /* ===== 현황 ===== */
-function given(){ const c={"상":0,"중":0,"하":0}; Object.values(D.people).forEach(p=>Object.values(p.g).forEach(g=>c[g]++)); return c; }
+const actual=p=>p.a||p.g;   // 실제 지급 등급 (예전 기록은 결과 등급 그대로)
+function given(){ const c={"상":0,"중":0,"하":0}; Object.values(D.people).forEach(p=>Object.values(actual(p)).forEach(g=>c[g]++)); return c; }
+/* 상·중은 1인 1개: 이미 받은(또는 이번에 먼저 고른) 등급이면 하로 대체 */
+function plan(p, picks){ const have=new Set(Object.values(p?actual(p):{})), out={};
+  for(const k of Object.keys(ATK)){ const g=picks[k]; if(!g) continue;
+    out[k] = (g!=="하" && have.has(g)) ? "하" : g; have.add(out[k]); }
+  return out; }
 function renderStats(){
   const c=given();
   $("#stPeople").textContent=Object.keys(D.people).length; $("#stEntry").textContent=D.entries.length;
@@ -226,11 +235,13 @@ $("#btnClear").onclick=()=>{ cur=null; pick={}; $("#fName").value=""; $("#fLast"
 ["#fName","#fLast"].forEach(s=>$(s).addEventListener("keydown",e=>{ if(e.key==="Enter") find(); }));
 
 function render(){
-  const p=cur?D.people[cur.key]:null, had=p?p.g:{};
+  const p=cur?D.people[cur.key]:null, had=p?p.g:{}, pl=plan(p,pick);
   $("#atk").innerHTML=Object.entries(ATK).map(([k,nm])=>{
     const done=had[k], sel=done||pick[k];
     const btns=GRADES.map(g=>`<button type="button" class="${GCLS[g]}" data-k="${k}" data-g="${g}" aria-pressed="${sel===g}" ${(!cur||(ONLY_HA[k]&&g!=="하"))?"disabled":""}>${g}</button>`).join("");
-    return `<div class="r ${done?"done":""}"><span class="k">${k}</span><span class="nm">${nm}${done?`<span class="tagdone">지급 완료</span>`:""}</span><div class="seg">${btns}</div></div>`;
+    const act=done?actual(p)[k]:pl[k], swap=sel&&act&&act!==sel;
+    const tag=done?`<span class="tagdone">지급 완료${swap?` · ${act} 지급`:""}</span>`:(swap?`<span class="sub">→ 하(스티커)로 지급</span>`:"");
+    return `<div class="r ${done?"done":""}"><span class="k">${k}</span><span class="nm">${nm}${tag}</span><div class="seg">${btns}</div></div>`;
   }).join("");
   $("#btnGive").disabled=!cur||!Object.keys(pick).length;
   renderEvent();
@@ -241,7 +252,10 @@ $("#atk").addEventListener("click",e=>{ const b=e.target.closest("button[data-k]
 $("#btnGive").onclick=()=>{
   if(!cur||!Object.keys(pick).length) return;
   D=load(); const p=D.people[cur.key]||(D.people[cur.key]={name:cur.name,last4:cur.last4,g:{},at:Date.now()});
-  const out=[]; for(const [k,g] of Object.entries(pick)){ if(p.g[k]) continue; p.g[k]=g; out.push(`${k} ${g} · ${PRIZE[g]}`); }
+  if(!p.a) p.a=Object.assign({},p.g);
+  const pl=plan(p,pick), out=[];
+  for(const [k,g] of Object.entries(pick)){ if(p.g[k]) continue; p.g[k]=g; p.a[k]=pl[k];
+    out.push(`${k} ${g}${pl[k]!==g?"→하":""} · ${PRIZE[pl[k]]}`); }
   if(!save()) return;
   autoBackup();
   pick={}; $("#handout").innerHTML="지급: "+out.map(esc).join(" / ");
@@ -327,7 +341,8 @@ function csvPrize(){
   const head=["이름","전화번호뒤4자리","A MEMORY","B CODE","C TYPE","D KOYUNG","추첨응모(O/X)"];
   return [head.join(",")].concat(Object.values(D.people).sort((a,b)=>a.at-b.at).map(p=>{
     const e=D.entries.find(x=>x.key===keyOf(p.name,p.last4));
-    return [p.name,`="${p.last4}"`,p.g.A||"",p.g.B||"",p.g.C||"",p.g.D||"",e?"O":"X"].map(csvCell).join(","); })).join("\r\n");
+    const cell=k=>{ const g=p.g[k], a=actual(p)[k]; return !g?"":(a&&a!==g?`${g}→${a}`:g); };
+    return [p.name,`="${p.last4}"`,cell("A"),cell("B"),cell("C"),cell("D"),e?"O":"X"].map(csvCell).join(","); })).join("\r\n");
 }
 function csvEvent(){
   const w=new Set(D.winners);
@@ -385,7 +400,8 @@ $("#fileRestore").onchange=async e=>{
     const iN=h.indexOf("이름"), iL=h.indexOf("전화번호뒤4자리"), iP=h.indexOf("전화번호");
     if(iN>=0&&iL>=0){ for(const r of rows){ const name=(r[iN]||"").trim(), last4=digits(r[iL]).slice(-4); if(!name||last4.length!==4) continue;
         const key=keyOf(name,last4), p=D.people[key]||(D.people[key]={name,last4,g:{},at:Date.now()});
-        Object.keys(ATK).forEach((k,i)=>{ const g=(r[iL+1+i]||"").trim(); if(GRADES.includes(g)&&!p.g[k]) p.g[k]=g; }); np++; } }
+        if(!p.a) p.a=Object.assign({},p.g);
+        Object.keys(ATK).forEach((k,i)=>{ const v=(r[iL+1+i]||"").trim(); const [g,a]=v.split("→"); if(GRADES.includes(g)&&!p.g[k]){ p.g[k]=g; p.a[k]=GRADES.includes(a)?a:g; } }); np++; } }
     else if(iN>=0&&iP>=0){ for(const r of rows){ const name=(r[iN]||"").trim(), phone=digits(r[iP]); if(!name||!/^01\d{9}$/.test(phone)) continue;
         if(D.entries.some(x=>x.phone===phone)) continue;
         D.entries.push({no:++D.seq,key:keyOf(name,phone.slice(-4)),name,phone,agree:"O",at:Date.now()}); ne++; } }

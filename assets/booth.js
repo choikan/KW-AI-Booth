@@ -34,6 +34,7 @@ window.BOOTH = (function(){
     const b = document.documentElement; if(!document.body) return;
     b.style.zoom = "";
     if(innerWidth < 900) return;      // 휴대폰·세로 화면은 원래대로 스크롤
+    if(document.body.hasAttribute("data-nofit")) return; // 스크롤 허용 페이지(본부)
     const h = document.documentElement.scrollHeight;
     const z = Math.max(MIN, Math.min(1, (innerHeight - 2) / h));
     if(z < 0.995) b.style.zoom = z.toFixed(3);
