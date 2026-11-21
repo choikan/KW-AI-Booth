@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>2026 KW Epilogue: AI Booth · 인공지능융합대학 학생회 하성</title>
-<meta name="description" content="11.25(수) 화도관 앞 인공지능융합대학 전공 탐색·체험 부스. 4가지 체험하고 경품 받아 가세요!">
+<title>인융 ATTACK · 2026 KW Epilogue · 인공지능융합대학 학생회 하성</title>
+<meta name="description" content="11.25(수) 화도관 앞 통합 부스. 4가지 ATTACK에 도전하고 상품 받아 가세요! 2개 이상 하면 추첨까지.">
 <link rel="icon" href="assets/img/logo-blue.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,73 +17,102 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Gowun Dodum","A
 h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo",sans-serif;font-weight:400}
 
 /* ---------- 밤하늘 헤더 ---------- */
-.sky{position:relative;overflow:hidden;color:#fff;padding:28px 32px 64px;
+.sky{position:relative;overflow:hidden;color:#fff;padding:26px 32px 66px;
   background:radial-gradient(900px 420px at 85% -20%,rgba(116,87,214,.55),transparent 60%),radial-gradient(700px 380px at 0% 30%,rgba(63,95,209,.45),transparent 60%),linear-gradient(180deg,#050C22 0%,#0B1A44 65%,#1A2C6B 100%)}
 .stars{position:absolute;inset:0;pointer-events:none}
 .stars i{position:absolute;border-radius:50%;background:#fff;opacity:.8;animation:tw 3s ease-in-out infinite}
 @keyframes tw{50%{opacity:.25}}
-.sky-in{position:relative;max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:32px}
-.logo{width:150px;height:auto;flex:none;filter:drop-shadow(0 0 18px rgba(141,178,255,.45))}
+.sky-in{position:relative;max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:30px}
+.logo{width:132px;height:auto;flex:none;filter:drop-shadow(0 0 18px rgba(141,178,255,.45))}
 .title{flex:1;min-width:0}
-.pill{display:inline-block;font-family:"Jua",sans-serif;font-size:1rem;padding:4px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
-.sky h1{font-size:3.2rem;line-height:1.1;margin:12px 0 6px}
-.sky h1 em{font-style:normal;background:linear-gradient(90deg,#9DBBFF,#C9B5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sky p{margin:0;opacity:.85;font-size:1.1rem}
+.pill{display:inline-block;font-family:"Jua",sans-serif;font-size:.98rem;padding:4px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4)}
+.sky h1{font-size:4rem;line-height:1;margin:12px 0 8px;letter-spacing:.01em}
+.sky h1 em{font-style:normal;background:linear-gradient(90deg,#FFD45C,#FF9DBE 45%,#C9B5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sky p{margin:0;opacity:.9;font-size:1.15rem}
+.sky p b{font-family:"Jua",sans-serif;font-weight:400;color:#FFD45C}
 .info{display:flex;flex-direction:column;gap:10px;flex:none}
 .info div{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:16px;padding:8px 18px;min-width:230px}
-.info small{display:block;font-size:.75rem;opacity:.7;letter-spacing:.1em}
-.info b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.35rem}
+.info small{display:block;font-size:.72rem;opacity:.7;letter-spacing:.12em}
+.info b{font-family:"Jua",sans-serif;font-weight:400;font-size:1.3rem}
 .wave{position:absolute;left:0;right:0;bottom:-1px;height:56px;display:block}
 
 /* ---------- 본문 ---------- */
-.wrap{max-width:1240px;margin:-30px auto 0;padding:0 32px 40px;position:relative}
-.hello{display:flex;align-items:center;gap:6px;margin:0 0 20px}
-.hello img{width:118px;height:auto;flex:none;filter:drop-shadow(0 6px 0 rgba(24,34,74,.12))}
-.say{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:12px 20px;font-family:"Jua",sans-serif;font-size:1.2rem;line-height:1.45}
+.wrap{max-width:1240px;margin:-34px auto 0;padding:0 32px 40px;position:relative}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:20px;align-items:center;margin-bottom:22px}
+.hello{display:flex;align-items:center;gap:6px}
+.hello img{width:112px;height:auto;flex:none;filter:drop-shadow(0 6px 0 rgba(24,34,74,.12))}
+.say{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:12px 18px;font-family:"Jua",sans-serif;font-size:1.15rem;line-height:1.45}
 .say::after{content:"";position:absolute;left:-9px;top:50%;margin-top:-7px;width:14px;height:14px;background:var(--surface);border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
 .say b{color:var(--blue);font-weight:400}
-.say span{color:var(--violet)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--surface);border:2.5px solid var(--line);border-radius:18px;padding:10px 12px 10px 50px;position:relative;font-size:.95rem;line-height:1.35;min-height:64px;display:flex;flex-direction:column;justify-content:center}
+.steps li::before{content:counter(s);position:absolute;left:10px;top:50%;margin-top:-15px;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-family:"Jua",sans-serif;display:flex;align-items:center;justify-content:center}
+.steps b{display:block;font-family:"Jua",sans-serif;font-weight:400;font-size:1.08rem;color:var(--ink)}
+.steps span{color:var(--muted)}
 
-.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.zone{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:2.5px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 5px 0 var(--line);transition:transform .12s,box-shadow .12s}
+.sec{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px;margin:0 0 12px}
+.sec h2{margin:0;font-size:1.55rem}
+.sec span{color:var(--muted);font-size:.95rem}
+
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.zone{--c:var(--blue);--soft-c:#E4E9FF;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:2.5px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 5px 0 var(--line);transition:transform .12s,box-shadow .12s}
 .zone:hover{transform:translateY(-4px);box-shadow:0 9px 0 var(--line)}
 .zone:active{transform:translateY(5px);box-shadow:0 0 0 var(--line)}
 .zone:focus-visible{outline:4px solid var(--violet);outline-offset:4px}
-.zone .pic{position:relative;height:190px;display:flex;align-items:center;justify-content:center;border-bottom:2.5px solid var(--line)}
-.zone .pic img{height:170px;width:auto;max-width:90%;object-fit:contain}
-.zone .letter{position:absolute;left:14px;top:12px;font-family:"Jua",sans-serif;font-size:1.05rem;color:#fff;border-radius:999px;padding:3px 12px}
-.zone .body{flex:1;display:flex;flex-direction:column;padding:16px 18px 18px}
-.zone h3{font-size:1.45rem;line-height:1.25;margin:0 0 6px}
-.zone p{margin:0;color:var(--muted);font-size:1rem}
-.zone .meta{margin-top:6px;font-size:.92rem;color:var(--muted)}
-.zone .btn{margin-top:auto;padding-top:14px}
-.zone .btn span{display:block;text-align:center;font-family:"Jua",sans-serif;font-size:1.2rem;color:#fff;border:2.5px solid var(--line);border-radius:999px;padding:9px;box-shadow:0 3px 0 var(--line)}
-.za .pic{background:#E8EEFF}.za .letter,.za .btn span{background:#4A6BE0}
-.zb .pic{background:#E4E9FF}.zb .letter,.zb .btn span{background:var(--blue)}
-.zc .pic{background:#EDE7FF}.zc .letter,.zc .btn span{background:var(--violet)}
-.zd .pic{background:#F2E6FB}.zd .letter,.zd .btn span{background:#9447C9}
-.za .btn span{background:var(--surface);color:var(--ink)}
+.zone .pic{position:relative;height:158px;display:flex;align-items:flex-end;justify-content:center;border-bottom:2.5px solid var(--line);background:var(--soft-c)}
+.zone .pic img{height:146px;width:auto;max-width:86%;object-fit:contain}
+.zone .num{position:absolute;left:12px;top:10px;font-family:"Jua",sans-serif;font-size:.95rem;color:#fff;background:var(--c);border:2px solid var(--line);border-radius:999px;padding:1px 11px}
+.zone .time{position:absolute;right:12px;top:10px;font-size:.82rem;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:1px 10px}
+.zone .body{flex:1;display:flex;flex-direction:column;padding:14px 18px 18px}
+.zone .en{font-family:"Jua",sans-serif;font-size:1.55rem;line-height:1.1;color:var(--c);letter-spacing:.01em}
+.zone h3{font-size:1.15rem;line-height:1.3;margin:2px 0 8px}
+.zone p{margin:0 0 14px;color:var(--muted);font-size:.97rem;line-height:1.5}
+.zone .gift{margin-top:auto;display:flex;align-items:center;gap:10px;padding-top:12px;border-top:2px dashed var(--soft);font-size:.9rem;color:var(--ink)}
+.zone .gift .chips{display:flex;gap:4px;flex:none}
+.gift .off{opacity:.2}
+.zone .gift i{font-style:normal;font-family:"Jua",sans-serif;font-size:.9rem;color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.gift .g3{background:var(--violet)} .gift .g2{background:var(--blue)} .gift .g1{background:var(--ok)}
+.zone .btn{padding-top:14px}
+.zone .btn span{display:block;text-align:center;font-family:"Jua",sans-serif;font-size:1.2rem;color:#fff;background:var(--c);border:2.5px solid var(--line);border-radius:999px;padding:9px;box-shadow:0 3px 0 var(--line)}
+.za{--c:#4A6BE0;--soft-c:#E8EEFF} .zb{--c:var(--blue);--soft-c:#E2E8FF}
+.zc{--c:var(--violet);--soft-c:#EDE7FF} .zd{--c:#9447C9;--soft-c:#F2E6FB}
 
-.exit{display:flex;align-items:center;gap:24px;margin-top:26px;text-decoration:none;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px 28px;box-shadow:0 5px 0 var(--line);
-  background:radial-gradient(500px 180px at 90% 0%,rgba(255,212,92,.3),transparent 60%),linear-gradient(120deg,#16285E,#4B3AA8)}
-.exit:hover{filter:brightness(1.06)}
-.exit:active{transform:translateY(5px);box-shadow:none}
-.exit .tagx{font-family:"Jua",sans-serif;font-size:.95rem;opacity:.8}
-.exit h3{margin:0;font-size:1.8rem;line-height:1.2}
-.exit p{margin:2px 0 0;opacity:.88;font-size:1.05rem}
-.exit .cta{margin-left:auto;flex:none;background:#fff;color:var(--night);font-family:"Jua",sans-serif;font-size:1.25rem;border-radius:999px;padding:10px 26px;border:2.5px solid var(--line);box-shadow:0 3px 0 var(--line)}
+.bottom{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;margin-top:26px;align-items:stretch}
+.prizes{display:flex;flex-direction:column;justify-content:center;background:var(--surface);border:2.5px solid var(--line);border-radius:24px;padding:16px 18px;box-shadow:0 5px 0 var(--line)}
+.prizes h2{margin:0 0 10px;font-size:1.3rem}
+.plist span{min-width:0}
+.plist{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.plist div{display:flex;align-items:center;gap:10px;border:2px solid var(--soft);border-radius:16px;padding:8px 10px}
+.plist i{flex:none;font-style:normal;font-family:"Jua",sans-serif;font-size:1.25rem;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--line)}
+.plist b{display:block;font-family:"Jua",sans-serif;font-weight:400;font-size:1.08rem;line-height:1.2}
+.plist small{color:var(--muted);font-size:.8rem}
+.prizes .fine{margin:12px 0 0;text-align:center;font-size:.92rem;line-height:1.5;color:#D93A3A}
+
+.exit{display:flex;flex-direction:column;justify-content:center;gap:6px;text-decoration:none;color:#fff;border:2.5px solid var(--line);border-radius:24px;padding:18px 24px;box-shadow:0 5px 0 var(--line);position:relative;overflow:hidden;
+  background:radial-gradient(420px 180px at 95% 0%,rgba(255,212,92,.35),transparent 60%),linear-gradient(120deg,#16285E,#4B3AA8)}
+.exit .tagx{font-family:"Jua",sans-serif;font-size:.92rem;opacity:.8}
+.exit h3{margin:0;font-size:2.2rem;line-height:1.1;letter-spacing:.04em}
+.exit p{margin:0;opacity:.9;font-size:1rem}
+.exit p b{color:#FFD45C;font-weight:400;font-family:"Jua",sans-serif}
+.exit .cta{align-self:flex-start;margin-top:6px;background:#fff;color:var(--night);font-family:"Jua",sans-serif;font-size:1.15rem;border-radius:999px;padding:8px 24px;border:2.5px solid var(--line);box-shadow:none;font-size:1rem;padding:6px 18px}
+.exit svg{position:absolute;right:18px;bottom:14px;opacity:.9}
 footer{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:.9rem;margin-top:28px}
 footer img{width:34px}
 
 /* 작은 화면 */
-@media (max-width:1100px){ .zones{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:760px){
-  .sky{padding:22px 18px 56px}.sky-in{flex-direction:column;text-align:center;gap:14px}.logo{width:120px}.sky h1{font-size:2.4rem}
-  .info{flex-direction:row;flex-wrap:wrap;justify-content:center}.info div{min-width:0;text-align:left}
-  .wrap{padding:0 16px 32px}.say{font-size:1.05rem}.hello img{width:96px}
-  .exit{flex-wrap:wrap;padding:18px}.exit .cta{margin-left:0}
+@media (max-width:1100px){
+  .zones{grid-template-columns:repeat(2,1fr)}
+  .intro{grid-template-columns:1fr}
 }
-@media (max-width:520px){ .zones{grid-template-columns:1fr} .zone .pic{height:160px}.zone .pic img{height:140px} }
+@media (max-width:860px){ .bottom{grid-template-columns:1fr} }
+@media (max-width:760px){
+  .sky{padding:22px 18px 58px}.sky-in{flex-direction:column;text-align:center;gap:14px}.logo{width:104px}.sky h1{font-size:3rem}
+  .info{flex-direction:row;flex-wrap:wrap;justify-content:center}.info div{min-width:0;text-align:left}
+  .wrap{padding:0 16px 32px}.say{font-size:1.02rem}.hello img{width:90px}
+  .steps{grid-template-columns:1fr}
+  .plist{grid-template-columns:1fr}
+}
+@media (max-width:520px){ .zones{grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){.stars i{animation:none}.zone{transition:none}}
 </style>
 </head>
@@ -94,9 +123,9 @@ footer img{width:34px}
   <div class="sky-in">
     <img class="logo" src="assets/img/logo-white.png" alt="인공지능융합대학 제3대 학생회 하성 로고">
     <div class="title">
-      <span class="pill">2026 KW Epilogue: AI Booth</span>
-      <h1>AI 전공, <em>직접 해보자!</em></h1>
-      <p>인공지능융합대학 전공 탐색 · 체험 부스</p>
+      <span class="pill">2026 KW Epilogue · 인로와융</span>
+      <h1>인융 <em>ATTACK</em></h1>
+      <p>4가지 ATTACK에 도전하고 본부에서 <b>상품</b> 받아 가세요!</p>
     </div>
     <div class="info">
       <div><small>DATE</small><b>11.25 수 · 10:30 – 13:30</b></div>
@@ -110,59 +139,80 @@ footer img{width:34px}
 </header>
 
 <main class="wrap">
-  <div class="hello">
-    <img src="assets/img/koyung-hi.webp" alt="손 흔드는 코융이">
-    <div class="say">안녕! 나는 <b>코융이</b>야. 하고 싶은 체험을 골라서 놀다 가~<br><span>체험 2개 이상</span> 하면 출구에서 특별상 추첨에도 응모할 수 있어!</div>
+  <div class="intro">
+    <div class="hello">
+      <img src="assets/img/koyung-hi.webp" alt="손 흔드는 코융이">
+      <div class="say">안녕, 나는 <b>코융이</b>야!<br>마음에 드는 ATTACK부터 골라 봐~</div>
+    </div>
+    <ol class="steps">
+      <li><b>ATTACK 고르기</b><span>4개 중 자유 선택</span></li>
+      <li><b>결과 기억하기</b><span>재도전 자유</span></li>
+      <li><b>본부에서 상품 수령</b><span>추첨은 2개 이상부터</span></li>
+    </ol>
   </div>
 
+  <div class="sec"><h2>도전할 ATTACK 고르기</h2><span>하나만 해도 상품 증정</span></div>
   <div class="zones">
     <a class="zone za" href="ram/">
-      <div class="pic"><span class="letter">ZONE A</span><img src="assets/img/koyung-ce.webp" alt=""></div>
+      <div class="pic"><span class="num">01</span><span class="time">약 1분</span><img src="assets/img/koyung-ce.webp" alt=""></div>
       <div class="body">
-        <h3>RAM이 부족합니다!</h3>
-        <p>아이콘 9개를 5초 보고 30초 안에 제자리로</p>
-        <div class="meta">현장 카드 게임 · 약 1분</div>
+        <div class="en">MEMORY ATTACK</div>
+        <h3>5초 기억력 승부</h3>
+        <p>이미지 9개 5초 관찰 후 30초 안에 제자리 배치</p>
+        <div class="gift"><span class="chips"><i class="g3">상</i><i class="g2">중</i><i class="g1">하</i></span><span>맞힌 개수 기준</span></div>
         <div class="btn"><span>규칙 보기</span></div>
       </div>
     </a>
     <a class="zone zb" href="coding/">
-      <div class="pic"><span class="letter">ZONE B</span><img src="assets/img/koyung-sw.webp" alt=""></div>
+      <div class="pic"><span class="num">02</span><span class="time">2~3분</span><img src="assets/img/koyung-sw.webp" alt=""></div>
       <div class="body">
-        <h3>Hello World 코딩</h3>
-        <p>빈칸 3개만 채우면 내 코드가 돌아가요</p>
-        <div class="meta">Python · C · Java · JS · 2~3분</div>
+        <div class="en">CODE ATTACK</div>
+        <h3>코드를 완성하라</h3>
+        <p>코드 빈칸을 채워 실제 프로그램 실행</p>
+        <div class="gift"><span class="chips"><i class="g3">상</i><i class="g2">중</i><i class="g1">하</i></span><span>선택 난이도 기준</span></div>
         <div class="btn"><span>시작하기</span></div>
       </div>
     </a>
     <a class="zone zc" href="major/">
-      <div class="pic"><span class="letter">ZONE C</span><img src="assets/img/koyung-if.webp" alt=""></div>
+      <div class="pic"><span class="num">03</span><span class="time">약 2분</span><img src="assets/img/koyung-if.webp" alt=""></div>
       <div class="body">
-        <h3>나에게 맞는 AI 전공은?</h3>
-        <p>12문항으로 16가지 유형 중 내 유형 찾기</p>
-        <div class="meta">4개 학부 · 약 2분</div>
+        <div class="en">TYPE ATTACK</div>
+        <h3>나의 AI 유형 발견</h3>
+        <p>12문항으로 나와 맞는 학부·진로 찾기</p>
+        <div class="gift"><span class="chips"><i class="g3 off">상</i><i class="g2 off">중</i><i class="g1">하</i></span><span>완료 시 전원 지급</span></div>
         <div class="btn"><span>시작하기</span></div>
       </div>
     </a>
     <a class="zone zd" href="jjinyung/">
-      <div class="pic"><span class="letter">ZONE D</span><img src="assets/img/koyung-rb.webp" alt=""></div>
+      <div class="pic"><span class="num">04</span><span class="time">약 1분</span><img src="assets/img/koyung-rb.webp" alt=""></div>
       <div class="body">
-        <h3>찐융 VS 짭융</h3>
-        <p>짭융 사이에 숨은 진짜 찐융은 몇 마리?</p>
-        <div class="meta">하 30초 · 중 20초 · 상 10초</div>
+        <div class="en">KOYUNG ATTACK</div>
+        <h3>진짜 코융이를 찾아라</h3>
+        <p>짭융 사이에 숨은 찐융 수 맞히기</p>
+        <div class="gift"><span class="chips"><i class="g3">상</i><i class="g2">중</i><i class="g1">하</i></span><span>클리어 난이도 기준</span></div>
         <div class="btn"><span>시작하기</span></div>
       </div>
     </a>
   </div>
 
-  <a class="exit" href="raffle/">
-    <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg>
-    <div>
-      <div class="tagx">EXIT · 출구</div>
-      <h3>경품 추첨함</h3>
-      <p>체험 2개 이상 마쳤다면 특별상 추첨에 응모하세요</p>
+  <div class="bottom">
+    <section class="prizes" aria-labelledby="ptitle">
+      <h2 id="ptitle">이런 상품을 받아요</h2>
+      <div class="plist">
+        <div><i style="background:var(--violet)">상</i><span><b>보조 배터리</b></span></div>
+        <div><i style="background:var(--blue)">중</i><span><b>키캡 키링</b></span></div>
+        <div><i style="background:var(--ok)">하</i><span><b>리무버블 스티커</b></span></div>
+      </div>
+      <p class="fine">상품은 체험 후 본부에서 일괄 수령 · ATTACK별 최고 등급 1개<br>스티커는 3종 중 택 1 · 준비 수량 소진 시 조기 마감</p>
+    </section>
+    <div class="exit">
+      <div class="tagx">본부 · 추첨 이벤트</div>
+      <h3>EVENT</h3>
+      <p>ATTACK <b>2개 이상</b> 완료 시<br>3종 세트 추첨 응모 가능</p>
+      <span class="cta">본부에서 응모</span>
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M8.5 3.5c1.5 0 3.5 2.5 3.5 5.5-3 0-5-1.6-5-3.2 0-1.3.6-2.3 1.5-2.3zM15.5 3.5c-1.5 0-3.5 2.5-3.5 5.5 3 0 5-1.6 5-3.2 0-1.3-.6-2.3-1.5-2.3z"/></svg>
     </div>
-    <span class="cta">응모하기</span>
-  </a>
+  </div>
 
   <footer><img src="assets/img/logo-blue.png" alt="">인공지능융합대학 제3대 학생회 하성 · 기획국</footer>
 </main>

@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B · Hello, World! 코딩 체험 · 2026 KW Epilogue: AI Booth</title>
+<title>CODE ATTACK · 인융 ATTACK · 2026 KW Epilogue</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/common.css">
 <link rel="icon" href="../assets/img/logo-blue.png">
+<script src="../assets/booth.js" charset="utf-8"></script>
 <style>
   :root{
     --card:var(--surface);
@@ -140,13 +141,13 @@
 </head>
 <body>
 <header class="kw-bar"><div class="kw-bar-in">
-  <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>AI Booth<small>인공지능융합대학 학생회 하성</small></span></a>
-  <span class="kw-zone"><b>B</b>Hello World 코딩</span>
-  <a class="kw-all" href="../">전체 체험</a>
+  <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>인융 ATTACK<small>인공지능융합대학 학생회 하성</small></span></a>
+  <span class="kw-zone"><b>2</b>CODE ATTACK</span>
+  <a class="kw-all" href="../">전체 ATTACK</a>
 </div></header>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>인공지능융합대학 전공 탐색 체험</small><b>Hello, World! 코딩 체험</b></div>
+    <div class="brand"><small>ATTACK 02 · 코드를 완성하라</small><b>CODE ATTACK</b></div>
     <button class="ghost" id="homeBtn" type="button">처음으로</button>
   </header>
   <main id="app" aria-live="polite"></main>
@@ -252,11 +253,11 @@ function renderStart(){
   const langBtns = Object.entries(LANGS).map(([k,v])=>
     `<button type="button" class="opt" data-lang="${k}" aria-pressed="${S.lang===k}"><span class="t">${v.name}</span><span class="d">${v.desc}</span></button>`).join('');
   const lvBtns = Object.entries(LEVELS).map(([k,v])=>
-    `<button type="button" class="opt" data-level="${k}" aria-pressed="${String(S.level)===k}"><span class="lv ${v.cls}">${v.name}</span><span class="t">${v.title}</span><span class="d">${v.desc}</span></button>`).join('');
+    `<button type="button" class="opt" data-level="${k}" aria-pressed="${String(S.level)===k}"><span class="lv ${v.cls}">${v.name}</span><span class="t">${v.title}</span><span class="d">${v.desc}</span><span class="d" style="color:var(--ink)">완료 상품 · ${BOOTH.PRIZES[v.name].name}</span></button>`).join('');
   app.innerHTML = `
   <section class="card">
     <h1>빈칸을 채우면<br>프로그램이 돌아가요!</h1>
-    <p class="lead">진짜 코드에서 비어 있는 부분을 직접 입력해 보세요. 문제는 3개이고, 막히면 힌트를 볼 수 있어요.</p>
+    <p class="lead">진짜 코드의 빈칸을 채우고 ▶ 실행! 문제는 3개, 막히면 힌트를 볼 수 있어요.<br>고른 난이도를 끝까지 풀면 그 난이도의 상품을 본부에서 받아요.</p>
     <div class="step"><div class="step-label"><span class="num">1</span><h2 style="margin:0">언어를 골라요</h2></div><div class="grid g4">${langBtns}</div></div>
     <div class="step"><div class="step-label"><span class="num">2</span><h2 style="margin:0">난이도를 골라요</h2></div><div class="grid g3">${lvBtns}</div></div>
     <div class="row"><span class="spacer"></span><button type="button" class="primary" id="startBtn" ${S.lang&&S.level?'':'disabled'}>시작하기</button></div>
@@ -387,6 +388,10 @@ function renderFinish(){
   const L = LANGS[S.lang], lv = LEVELS[S.level];
   const perfect = S.hints===0 && S.reveals===0;
   const nextLv = S.level < 3 ? S.level+1 : null;
+  /* 상품: 고른 난이도 그대로. 정답 보기를 썼다면 한 단계 낮춰요 (REVEAL_DOWN=false면 끔) */
+  const REVEAL_DOWN = true;
+  const order = ['하','중','상'];
+  const prizeGrade = order[Math.max(0, S.level-1 - (REVEAL_DOWN && S.reveals>0 ? 1 : 0))];
   app.innerHTML = `
   <section class="card finish">
     <div class="medal"><img src="../assets/img/koyung-sw.webp" alt="노트북으로 코딩하는 코융이"></div>
@@ -397,6 +402,8 @@ function renderFinish(){
       <div class="stat"><b>${S.hints}</b><span>힌트 사용</span></div>
       <div class="stat"><b>${S.reveals}</b><span>정답 보기</span></div>
     </div>
+    ${BOOTH.stamp(prizeGrade, S.reveals?`정답 보기 사용으로 한 단계 낮아짐`:'', "CODE ATTACK")}
+    <div style="height:22px"></div>
     <div class="row center">
       ${nextLv?`<button type="button" class="primary" id="upBtn">난이도 ${LEVELS[nextLv].name} 도전하기</button>`:''}
       <button type="button" class="secondary" id="otherBtn">다른 언어로 해보기</button>

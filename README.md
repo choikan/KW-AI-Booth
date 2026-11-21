@@ -1,4 +1,4 @@
-# 2026 KW Epilogue: AI Booth — 통합 사이트
+# 인융 ATTACK — 2026 KW Epilogue 통합 사이트
 
 인공지능융합대학 학생회 하성 · 기획국
 
@@ -6,15 +6,18 @@
 
 ## 구성
 
-| 경로 | 존 | 내용 |
+| 경로 | ATTACK | 내용 |
 | --- | --- | --- |
-| `/` | 입구 | 행사 안내, 체험 존 목록, 추첨함 바로가기 |
-| `/ram/` | A | RAM 메모리 챌린지 규칙 + 운영진 타이머(5초/30초)·등급 계산 |
-| `/coding/` | B | Hello World 코딩 챌린지 |
-| `/major/` | C | 나에게 맞는 AI 전공은? (학부별 코융이 캐릭터) |
-| `/jjinyung/` | D | 찐융 VS 짭융 (+ 기록 도전·랭킹) |
-| `/raffle/` | 출구 | 경품 추첨함 (이름·전화번호 응모, 운영진 추첨) |
-| `/assets/common.css` | — | 공통 색상·상단 바 (색은 여기서 한 번에 바꿔요) |
+| `/` | 입구 | 행사 안내, 4가지 ATTACK, 상품, 추첨 응모 바로가기 |
+| `/ram/` | 01 MEMORY ATTACK | 규칙 + 운영진 타이머(5초/30초, 스페이스 바로 시작) + 맞힌 개수별 상품 |
+| `/coding/` | 02 CODE ATTACK | 빈칸 코딩 (고른 난이도 = 상품 등급, 정답 보기 쓰면 한 단계 ↓) |
+| `/major/` | 03 TYPE ATTACK | 나의 AI 유형 테스트 (완료 시 하 상품) |
+| `/jjinyung/` | 04 KOYUNG ATTACK | 찐융 VS 짭융, 전 난이도 5×5 · 모두 10초 (하: 하코융 노랑 / 중: +중코융 :P / 상: +상코융 404, 순위 기록 숨김) |
+| `/raffle/` | 출구 | 추첨 응모 (ATTACK 2개 이상) |
+| `/assets/common.css` | — | 공통 색상·상단 바·상품 도장 스타일 |
+| `/assets/booth.js` | — | **상품 이름 설정** (여기만 고치면 모든 결과 화면에 반영) |
+
+결과 화면마다 "이 화면을 운영진에게 보여 주세요" 상품 도장이 떠요. 운영진은 도장에 적힌 상품을 주면 돼요.
 
 ## 배포
 
@@ -28,9 +31,11 @@
 | 파일 | 상수 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `raffle/index.html` | `ADMIN_PIN` | `2026` | 추첨함 운영진 메뉴 PIN |
-| `raffle/index.html` | `PRIZE` | `보조배터리` | 특별상 경품 이름 |
+| `raffle/index.html` | `PRIZE` | `3종 세트` | 추첨 경품 이름 |
 | `raffle/index.html` | `MIN_ZONES` | `2` | 응모에 필요한 체험 수 |
+| `jjinyung/index.html` | `SHOW_RECORD` | `false` | 기록 도전·순위 버튼 보이기 |
 | `jjinyung/index.html` | `ADMIN_PIN` | `2026` | 랭킹 연락처 보기 PIN |
+| `coding/index.html` | `REVEAL_DOWN` | `true` | 정답 보기 사용 시 상품 한 단계 낮추기 |
 | `ram/index.html` | `WATCH`, `PLACE` | `5`, `30` | 관찰·배치 시간(초) |
 
 PIN은 페이지 소스에 그대로 들어 있어요. 화면에서 실수로 여는 걸 막는 정도로만 생각해 주세요.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>경품 추첨함 · 2026 KW Epilogue: AI Booth</title>
+<title>EVENT · 인융 ATTACK · 2026 KW Epilogue</title>
 <link rel="icon" href="../assets/img/logo-blue.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,9 +71,9 @@ tr.win td{color:var(--violet);font-weight:700}
 </head>
 <body>
 <header class="kw-bar"><div class="kw-bar-in">
-  <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>AI Booth<small>인공지능융합대학 학생회 하성</small></span></a>
-  <span class="kw-zone"><b>★</b>경품 추첨함</span>
-  <a class="kw-all" href="../">전체 체험</a>
+  <a class="kw-home" href="../"><img src="../assets/img/logo-white.png" alt="하성 로고"><span>인융 ATTACK<small>인공지능융합대학 학생회 하성</small></span></a>
+  <span class="kw-zone"><b>★</b>EVENT</span>
+  <a class="kw-all" href="../">전체 ATTACK</a>
 </div></header>
 
 <div class="wrap">
@@ -82,16 +82,16 @@ tr.win td{color:var(--violet);font-weight:700}
 <section class="screen on" id="s-form">
   <div class="ticket">
     <div class="txt">
-      <span class="tag" style="background:rgba(255,255,255,.18)">EXIT · 특별상</span>
-      <h1>경품 추첨함</h1>
-      <p>체험을 <b id="minTxt">2</b>개 이상 마쳤다면<br>추첨에 응모할 수 있어요.</p>
+      <span class="tag" style="background:rgba(255,255,255,.18)">본부 · 추첨 이벤트</span>
+      <h1>EVENT</h1>
+      <p>ATTACK을 <b id="minTxt">2</b>개 이상 마쳤다면<br>추첨에 응모할 수 있어요.</p>
       <span class="prize" id="prizeTxt">특별상 · 보조배터리</span>
     </div>
     <img src="../assets/img/koyung-if.webp" alt="신나게 달려가는 코융이">
   </div>
 
   <div class="box">
-    <label class="f">참여한 체험 <span class="muted" style="font-family:'Gowun Dodum';font-size:.9rem">(운영진이 확인해요)</span></label>
+    <label class="f">완료한 ATTACK <span class="muted" style="font-family:'Gowun Dodum';font-size:.9rem">(운영진이 확인해요)</span></label>
     <div class="zones" id="zones"></div>
     <p class="need" id="need"></p>
   </div>
@@ -99,7 +99,7 @@ tr.win td{color:var(--violet);font-weight:700}
   <div class="box stack">
     <div><label class="f" for="fName">이름</label><input type="text" id="fName" maxlength="10" autocomplete="off" placeholder="홍길동"></div>
     <div><label class="f" for="fPhone">전화번호</label><input type="tel" id="fPhone" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="010-0000-0000"></div>
-    <label class="agree"><input type="checkbox" id="fAgree"><span>이름과 전화번호를 <b>특별상 당첨 안내 연락</b>에만 쓰는 데 동의해요. 이 기기에만 저장되고, 추첨과 경품 지급이 끝나면 바로 지워요.</span></label>
+    <label class="agree"><input type="checkbox" id="fAgree"><span>이름과 전화번호를 <b>추첨 당첨 안내 연락</b>에만 쓰는 데 동의해요. 이 기기에만 저장되고, 추첨과 경품 지급이 끝나면 바로 지워요.</span></label>
   </div>
   <button class="primary full" id="btnSubmit">추첨함에 넣기</button>
   <p class="muted center" style="font-size:.88rem;margin-top:12px">한 사람당 한 번만 응모할 수 있어요. 당첨되면 입력한 번호로 연락드려요.</p>
@@ -162,10 +162,10 @@ tr.win td{color:var(--violet);font-weight:700}
 <script>
 /* ===== 설정: 필요하면 바꿔 주세요 ===== */
 const ADMIN_PIN = "2026";           // 운영진 메뉴 PIN
-const PRIZE = "보조배터리";          // 특별상 경품 이름
+const PRIZE = "3종 세트";           // 추첨 경품 이름
 const MIN_ZONES = 2;                // 응모에 필요한 최소 체험 수
 const AUTO_BACK = 8;                // 응모 완료 화면이 자동으로 돌아가는 시간(초)
-const ZONES = {A:"RAM 메모리", B:"Hello World 코딩", C:"나의 AI 전공", D:"찐융 VS 짭융"};
+const ZONES = {A:"MEMORY", B:"CODE", C:"TYPE", D:"KOYUNG"};
 
 /* ===== 이 기기에 저장 ===== */
 const KEY = "kw-raffle-v1";
@@ -185,12 +185,12 @@ function rand(n){ const a=new Uint32Array(1); crypto.getRandomValues(a); return 
 
 /* ===== 응모 ===== */
 $("#minTxt").textContent=MIN_ZONES;
-$("#prizeTxt").textContent=`특별상 · ${PRIZE}`;
+$("#prizeTxt").textContent=`추첨 경품 · ${PRIZE}`;
 let picked=new Set();
 function renderZones(){
-  $("#zones").innerHTML=Object.entries(ZONES).map(([k,v])=>`<button type="button" data-z="${k}" aria-pressed="${picked.has(k)}"><b>${k}</b>${esc(v)}</button>`).join("");
+  $("#zones").innerHTML=Object.entries(ZONES).map(([k,v])=>`<button type="button" data-z="${k}" aria-pressed="${picked.has(k)}"><b>${"ABCD".indexOf(k)+1}</b>${esc(v)} ATTACK</button>`).join("");
   const n=picked.size, ok=n>=MIN_ZONES;
-  $("#need").textContent= ok ? `${n}개 체험 완료! 응모할 수 있어요.` : `${MIN_ZONES}개 이상 골라 주세요. (지금 ${n}개)`;
+  $("#need").textContent= ok ? `ATTACK ${n}개 완료! 응모할 수 있어요.` : `${MIN_ZONES}개 이상 골라 주세요. (지금 ${n}개)`;
   $("#need").classList.toggle("ok", ok);
 }
 $("#zones").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const z=b.dataset.z; picked.has(z)?picked.delete(z):picked.add(z); renderZones(); });
@@ -201,7 +201,7 @@ function resetForm(){ picked=new Set(); $("#fName").value=""; $("#fPhone").value
 let backTimer=0;
 $("#btnSubmit").onclick=()=>{
   const name=$("#fName").value.trim(), phone=$("#fPhone").value.replace(/\D/g,"");
-  if(picked.size<MIN_ZONES) return toast(`체험을 ${MIN_ZONES}개 이상 골라 주세요`);
+  if(picked.size<MIN_ZONES) return toast(`ATTACK을 ${MIN_ZONES}개 이상 골라 주세요`);
   if(!name) return toast("이름을 입력해 주세요");
   if(!/^01\d{8,9}$/.test(phone)) return toast("전화번호를 확인해 주세요");
   if(!$("#fAgree").checked) return toast("동의에 체크해 주세요");
@@ -301,7 +301,7 @@ $("#btnPrint").onclick=()=>{
   D=load(); if(!D.winners.length) return toast("아직 추첨하지 않았어요");
   const w=window.open("","_blank"); if(!w) return toast("팝업을 허용해 주세요");
   const items=D.winners.map((p,i)=>{ const e=D.entries.find(x=>x.phone===p); return e?`<tr><td>${i+1}</td><td>${esc(e.name)}</td><td>${esc(fmtPhone(e.phone))}</td><td>${fmtNo(e.no)}</td></tr>`:""; }).join("");
-  w.document.write(`<!doctype html><meta charset="utf-8"><title>특별상 당첨자</title><style>body{font-family:sans-serif;padding:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:8px}</style><h2>2026 KW Epilogue: AI Booth · 특별상(${esc(PRIZE)}) 당첨자</h2><table><tr><th>순번</th><th>이름</th><th>전화번호</th><th>응모번호</th></tr>${items}</table>`);
+  w.document.write(`<!doctype html><meta charset="utf-8"><title>추첨 당첨자</title><style>body{font-family:sans-serif;padding:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:8px}</style><h2>인융 ATTACK · 추첨(${esc(PRIZE)}) 당첨자</h2><table><tr><th>순번</th><th>이름</th><th>전화번호</th><th>응모번호</th></tr>${items}</table>`);
   w.document.close(); w.focus(); w.print();
 };
 let wipeArm=0;
