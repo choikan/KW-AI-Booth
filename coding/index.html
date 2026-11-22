@@ -403,6 +403,7 @@ function renderFinish(){
       <div class="stat"><b>${S.reveals}</b><span>정답 보기</span></div>
     </div>
     ${BOOTH.stamp(prizeGrade, S.reveals?`정답 보기 사용으로 한 단계 낮아짐`:'', "B")}
+    ${nextLv?`<p class="muted center" style="font-size:.9rem;margin:10px 0 0">본부에서는 ATTACK당 한 번만 받아요. 더 도전할 거면 끝까지 하고 가세요!</p>`:''}
     <div style="height:22px"></div>
     <div class="row center">
       ${nextLv?`<button type="button" class="primary" id="upBtn">난이도 ${LEVELS[nextLv].name} 도전하기</button>`:''}

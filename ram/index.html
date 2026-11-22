@@ -82,7 +82,7 @@
     <div class="howto">
       <ol class="steps">
         <li><b>5초 관찰</b>가림판이 열리면 9개의 위치를 기억해요.</li>
-        <li><b>30초 배치</b>섞어 준 9개를 원래 자리에 놓아요.</li>
+        <li><b>30초 배치</b>운영진이 섞은 카드 9장을 건네면 원래 자리에 놓아요.</li>
         <li><b>채점</b>제자리에 놓은 개수로 상품이 정해져요.</li>
       </ol>
       <img class="boardimg" src="../assets/img/memory-board.webp" alt="RAM 메모리 챌린지 3×3 보드">
@@ -125,7 +125,7 @@
 <script>
 const WATCH=5, PLACE=30;          // 관찰·배치 시간(초). 바꿔도 돼요.
 const $=s=>document.querySelector(s);
-let raf=0, run=0;
+let raf=0, run=0, stage="watch";  // watch → place → score
 function grade(n){ return n>=8?"상":n>=5?"중":"하"; }
 function setClock(left,total,mode){
   const c=$("#clock"); c.textContent=Math.max(0,Math.ceil(left-1e-9));
@@ -141,6 +141,7 @@ function countdown(sec,mode,label){
 function reset(){
   run++; cancelAnimationFrame(raf);
   $("#phase").textContent="준비되면 시작을 눌러 주세요"; setClock(WATCH,WATCH,""); $("#clock").className="clock";
+  stage="watch"; $("#btnGo").textContent=`관찰 시작 (${WATCH}초)`; $("#keyHint").textContent="스페이스 바를 눌러도 시작돼요";
   $("#btnGo").hidden=false; $("#btnGo").disabled=false; $("#scoreBox").hidden=true; $("#verdict").textContent="";
   $("#score").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed","false"));
 }
@@ -151,8 +152,21 @@ $("#score").addEventListener("click",e=>{ const b=e.target.closest("button"); if
 });
 $("#btnGo").onclick=async()=>{
   $("#btnGo").disabled=true;
-  await countdown(WATCH,"watch","관찰 중… 위치를 기억해요");
-  await countdown(PLACE,"place","배치 중… 원래 자리에 붙여요");
+  if(stage==="watch"){
+    const my=run+1;
+    await countdown(WATCH,"watch","관찰 중… 위치를 기억해요");
+    if(my!==run) return;
+    /* 가림판 덮고 섞은 카드를 건넬 시간 — 준비되면 배치 시작 */
+    stage="place"; setClock(PLACE,PLACE,"place"); $("#clock").className="clock place";
+    $("#phase").textContent="가림판 덮고 카드를 건넨 뒤 배치 시작!";
+    $("#btnGo").textContent=`배치 시작 (${PLACE}초)`; $("#btnGo").disabled=false;
+    $("#keyHint").textContent="스페이스 바를 눌러도 시작돼요";
+    return;
+  }
+  const my=run+1;
+  await countdown(PLACE,"place","배치 중… 원래 자리에 놓아요");
+  if(my!==run) return;
+  stage="score";
   $("#phase").textContent="끝! 채점해 주세요"; $("#btnGo").hidden=true; $("#scoreBox").hidden=false;
   $("#scoreBox").scrollIntoView({behavior:"smooth",block:"nearest"});
 };

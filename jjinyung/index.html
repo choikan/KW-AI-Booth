@@ -215,6 +215,7 @@ button.big{font-size:1.5rem;padding:16px}
     <div class="who"><img id="clearImg" alt=""><div class="say2" id="clearSay"></div></div>
     <h2 id="clearTitle">클리어!</h2>
     <div id="clearStamp"></div>
+    <p class="muted" id="clearTip" style="font-size:.9rem;margin:8px 0 0;text-align:center">본부에서는 ATTACK당 한 번만 받아요. 더 도전할 거면 끝까지 하고 가세요!</p>
     <div class="acts">
       <button class="primary nextbtn" id="btnNextLv">다음 단계 도전<small id="nextSub"></small></button>
       <button class="ghost" data-go="home">처음으로</button>
@@ -294,14 +295,14 @@ const PENALTY = 2; // 기록 도전: 짭융을 잘못 누르면 더해지는 초
 /* ===== 기기에 저장 ===== */
 const KEY="jjj-booth-v1";
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
-let S=load(); S.lv=S.lv||1; S.board=S.board||[]; delete S.name; delete S.recs;
+let S=load(); S.lv=1; S.board=S.board||[]; delete S.name; delete S.recs;
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 
 /* ===== 공통 ===== */
 const $=s=>document.querySelector(s);
 const renders={};
 function show(id){ document.querySelectorAll(".screen").forEach(e=>e.classList.toggle("on", e.id==="s-"+id)); window.scrollTo(0,0); if(renders[id]) renders[id](); }
-function goHome(){ abortAll(); adminOn=false; BEST=0; show("home"); }
+function goHome(){ abortAll(); adminOn=false; BEST=0; S.lv=1; save(); show("home"); }
 document.addEventListener("click", e=>{ const g=e.target.closest("[data-go]"); if(!g) return; if(g.dataset.go==="home") return goHome(); abortAll(); show(g.dataset.go); });
 function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(toast._t); toast._t=setTimeout(()=>el.classList.remove("on"),1200); }
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
@@ -404,6 +405,7 @@ async function submit(){
       if(P.lv<3){ const nx=LEVELS[P.lv+1].name;
         $("#nextSub").textContent=`성공 시 ${BOOTH.PRIZES[nx].name} · 실패해도 ${BOOTH.PRIZES[L.name].name}`; $("#btnNextLv").hidden=false;
       } else $("#btnNextLv").hidden=true;
+      $("#clearTip").hidden = P.lv>=3;
       show("clear");
     }
   } else {

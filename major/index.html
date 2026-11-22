@@ -164,6 +164,7 @@ body.personal .booth-only{display:none!important}
   <h2 class="rtitle" id="rTitle"></h2>
   <p class="rline" id="rLine"></p>
   <div class="booth-only noprint" id="rStamp"></div>
+  <button class="primary booth-only noprint" id="btnNextP" style="display:block;width:100%;margin-top:12px">다음 참가자 (처음으로)</button>
   <div class="box booth-only noprint" style="margin-top:14px">
     <h3>내 결과 가져가기</h3>
     <div class="qr">
@@ -378,6 +379,7 @@ function parseHash(){
 }
 
 $("#btnStart").onclick=start;
+$("#btnNextP").onclick=()=>{ history.replaceState(null,"",location.pathname+location.search); document.body.classList.remove("personal"); ans=[]; qi=0; show("start"); };
 
 $("#btnMine").onclick=()=>{ history.replaceState(null,"",location.pathname+location.search); document.body.classList.remove("personal"); start(); };
 $("#btnPdf").onclick=()=>{ try{ window.print(); }catch(e){} };
