@@ -342,7 +342,7 @@ function cellHTML(src, vary){
 renders.home=()=>{
   $("#lvSel").innerHTML=[1,2,3].map(l=>`<button type="button" data-lv="${l}" aria-pressed="${S.lv===l}">${LEVELS[l].name}</button>`).join("");
   $("#lvSel").querySelectorAll("button").forEach(b=>b.onclick=()=>{ S.lv=+b.dataset.lv; save(); renders.home(); });
-  $("#lvDesc").textContent=`${LEVELS[S.lv].desc} · 클리어 상품: ${BOOTH.PRIZES[LEVELS[S.lv].name].name}`;
+  $("#lvDesc").innerHTML=`${LEVELS[S.lv].desc}<br>클리어 상품 · <b>${BOOTH.PRIZES[LEVELS[S.lv].name].name}</b>`;
 };
 
 /* ===== 찐융 세기 ===== */

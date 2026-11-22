@@ -156,12 +156,12 @@
 <script>
 (function(){
 const LANGS = {
-  python:{name:'Python', file:'main.py', desc:'AI·데이터 분석에 제일 많이 쓰는 언어', kw:['print','for','in','range','if','else','while'],
+  python:{name:'Python', file:'main.py', desc:'AI·데이터 분석의 대표 언어', kw:['print','for','in','range','if','else','while'],
     err:'SyntaxError: invalid syntax'},
-  c:{name:'C', file:'main.c', desc:'로봇·가전 속 프로그램의 기본 언어', kw:['int','for','if','else','while','return','printf','include'],
+  c:{name:'C', file:'main.c', desc:'로봇·가전 속 프로그램의 기본', kw:['int','for','if','else','while','return','printf','include'],
     err:'error: expected expression before token',
     wrap:{pre:['#include <stdio.h>','','int main() {'], indent:'    ', post:['    return 0;','}']}},
-  java:{name:'Java', file:'Main.java', desc:'앱과 서버를 만드는 튼튼한 언어', kw:['public','class','static','void','int','for','if','else','while','String'],
+  java:{name:'Java', file:'Main.java', desc:'앱과 서버를 만드는 언어', kw:['public','class','static','void','int','for','if','else','while','String'],
     err:'error: cannot find symbol',
     wrap:{pre:['public class Main {','    public static void main(String[] args) {'], indent:'        ', post:['    }','}']}},
   js:{name:'JavaScript', file:'main.js', desc:'웹사이트를 움직이는 언어', kw:['let','const','for','if','else','while','console'],

@@ -74,7 +74,9 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .rdabar{display:flex;height:14px;border-radius:999px;overflow:hidden;border:2px solid var(--line);margin-top:10px}
 .rdabar i{display:block;height:100%}
 .axis{margin:10px 0}
-.axis .lab{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:4px}
+.axis .lab{display:flex;justify-content:space-between;gap:8px;font-size:.92rem;margin-bottom:4px}
+.axis .lab span{white-space:nowrap}
+.axis .lab b{font-weight:400;font-family:"Jua",sans-serif}
 .axis .lab .on{font-family:"Jua",sans-serif;color:var(--ink)}
 .axis .lab .off{color:var(--muted)}
 .axis .track{height:12px;border-radius:999px;background:var(--soft);border:1.5px solid var(--line);position:relative;overflow:hidden}
@@ -225,10 +227,10 @@ const DEPTS = {
 };
 /* 축: [왼쪽, 오른쪽] */
 const AXES = [
-  {k:["S","H"], n:["화면 속 소프트웨어","손에 잡히는 하드웨어"]},
-  {k:["D","C"], n:["한 분야를 깊게","여러 분야를 연결"]},
-  {k:["R","B"], n:["원리를 탐구","직접 만들어 실현"]},
-  {k:["T","F"], n:["논리·시스템","사람·경험"]}
+  {k:["S","H"], n:["화면 속 소프트웨어","손에 잡히는 하드웨어"], s:["소프트웨어","하드웨어"]},
+  {k:["D","C"], n:["한 분야를 깊게","여러 분야를 연결"], s:["한 분야 깊게","여러 분야 연결"]},
+  {k:["R","B"], n:["원리를 탐구","직접 만들어 실현"], s:["원리 탐구","직접 실현"]},
+  {k:["T","F"], n:["논리·시스템","사람·경험"], s:["논리·시스템","사람·경험"]}
 ];
 /* 학부 = 1·2번째 글자, 진출 분야 = 3·4번째 글자. base = [연구, 개발, 응용] 기본 성향 */
 const TYPES = {
@@ -351,7 +353,7 @@ function renderResult(code, rda, rightPct, personal){
   $("#rRdaBar").innerHTML=L.map((l,i)=>`<i style="width:${rda[i]}%;background:var(${l[1]})"></i>`).join("");
   $("#rAxes").innerHTML=AXES.map((ax,i)=>{ const r=rightPct[i], l=100-r, onRight=r>=50;
     const fill = onRight ? `left:50%;width:${(r-50)}%` : `right:50%;width:${(l-50)}%`;
-    return `<div class="axis"><div class="lab"><span class="${onRight?"off":"on"}">${ax.k[0]} · ${esc(ax.n[0])} ${l}%</span><span class="${onRight?"on":"off"}">${r}% ${esc(ax.n[1])} · ${ax.k[1]}</span></div><div class="track"><i style="${fill}"></i></div></div>`; }).join("");
+    return `<div class="axis"><div class="lab"><span class="${onRight?"off":"on"}" title="${esc(ax.n[0])}">${ax.k[0]} ${esc(ax.s[0])} <b>${l}%</b></span><span class="${onRight?"on":"off"}" title="${esc(ax.n[1])}"><b>${r}%</b> ${esc(ax.s[1])} ${ax.k[1]}</span></div><div class="track"><i style="${fill}"></i></div></div>`; }).join("");
   $("#rCourseTitle").textContent=`${D.name}에서 이런 과목을 배워요`;
   $("#rCourses").innerHTML=t.courses.map(c=>`<li>${esc(c)}</li>`).join("");
   $("#rDeptNote").textContent=D.intro;

@@ -71,6 +71,9 @@
 
 /* 한글이 단어 중간에서 끊기지 않게 */
 body{word-break:keep-all;overflow-wrap:break-word}
+/* 줄바꿈 다듬기: 문단 끝에 한 단어만 남지 않게, 제목·말풍선은 줄 길이를 고르게 */
+p,li,span,small,em,label,td,.lead{text-wrap:pretty}
+h1,h2,h3,.bubble,.say,.say2,.tag{text-wrap:balance}
 
 /* 코융이 말풍선은 한 줄로 (좁은 휴대폰 화면만 줄바꿈 허용) */
 .bubble,.say,.say2{white-space:nowrap}
